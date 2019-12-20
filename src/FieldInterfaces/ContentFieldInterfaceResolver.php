@@ -17,7 +17,6 @@ class ContentFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
     public static function getFieldNamesToImplement(): array
     {
         return [
-            'post-type',
             'title',
             'content',
             'excerpt',
@@ -27,7 +26,6 @@ class ContentFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-            'post-type' => SchemaDefinition::TYPE_STRING,
             'title' => SchemaDefinition::TYPE_STRING,
             'content' => SchemaDefinition::TYPE_STRING,
             'excerpt' => SchemaDefinition::TYPE_STRING,
@@ -39,7 +37,6 @@ class ContentFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-            'post-type' => $translationAPI->__('Post type', 'content'),
             'title' => $translationAPI->__('Post title', 'content'),
             'content' => $translationAPI->__('Post content', 'content'),
             'excerpt' => $translationAPI->__('Post excerpt', 'content'),
