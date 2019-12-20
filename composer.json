@@ -1,0 +1,53 @@
+{
+    "name": "getpop/content",
+    "type": "library",
+    "description": "Interfaces and helpers for content-related entities (eg: posts, articles, etc)",
+    "keywords": [
+        "PoP",
+        "content"
+    ],
+    "homepage": "https://github.com/getpop/content",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leonardo Losoviz",
+            "email": "leo@getpop.org",
+            "homepage": "https://getpop.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php" : "~7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit" : ">=7.0",
+        "squizlabs/php_codesniffer": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PoP\\Content\\": "src"
+        },
+        "files": [
+            "initialize.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PoP\\Content\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "check-style": "phpcs src tests",
+        "fix-style": "phpcbf src tests"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
