@@ -24,10 +24,7 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
     public static function getFieldNamesToImplement(): array
     {
         return [
-            'published',
-            'not-published',
             'status',
-            'is-draft',
             'is-status',
             'date',
             'datetime',
@@ -37,10 +34,7 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-            'published' => SchemaDefinition::TYPE_BOOL,
-            'not-published' => SchemaDefinition::TYPE_BOOL,
             'status' => SchemaDefinition::TYPE_ENUM,
-            'is-draft' => SchemaDefinition::TYPE_BOOL,
             'is-status' => SchemaDefinition::TYPE_BOOL,
             'date' => SchemaDefinition::TYPE_DATE,
             'datetime' => SchemaDefinition::TYPE_DATE,
@@ -53,10 +47,7 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
             'post-type' => $translationAPI->__('Post type', 'content'),
-            'published' => $translationAPI->__('Has the post been published?', 'content'),
-            'not-published' => $translationAPI->__('Has the post not been published?', 'content'),
             'status' => $translationAPI->__('Post status', 'content'),
-            'is-draft' => $translationAPI->__('Is the post in \'draft\' status?', 'content'),
             'is-status' => $translationAPI->__('Is the post in the given status?', 'content'),
             'date' => $translationAPI->__('Post published date', 'content'),
             'datetime' => $translationAPI->__('Post published date and time', 'content'),
@@ -110,31 +101,6 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
         }
 
         return parent::getSchemaFieldArgs($typeResolver, $fieldName);
-    }
-
-    public function getSchemaFieldDeprecationDescription(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
-    {
-        $translationAPI = TranslationAPIFacade::getInstance();
-        $placeholder_status = $translationAPI->__('Use \'is-status(status:%s)\' instead of \'%s\'', 'content');
-        $placeholder_not = $translationAPI->__('Use \'not(fieldname:%s)\' instead of \'%s\'', 'content');
-        $descriptions = [
-            'is-draft' => sprintf(
-                $placeholder_status,
-                \POP_POSTSTATUS_DRAFT,
-                $fieldName
-            ),
-            'published' => sprintf(
-                $placeholder_status,
-                \POP_POSTSTATUS_PUBLISHED,
-                $fieldName
-            ),
-            'not-published' => sprintf(
-                $placeholder_not,
-                'published',
-                $fieldName
-            ),
-        ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDeprecationDescription($typeResolver, $fieldName, $fieldArgs);
     }
 
     public function addSchemaDefinitionForField(array &$schemaDefinition, TypeResolverInterface $typeResolver, string $fieldName): void
