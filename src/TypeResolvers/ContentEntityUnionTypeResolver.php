@@ -3,7 +3,7 @@ namespace PoP\Content\TypeResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
-use PoP\Content\FieldInterfaces\PublishableFieldInterfaceResolver;
+use PoP\Content\FieldInterfaces\ContentEntityFieldInterfaceResolver;
 use PoP\Content\TypeDataLoaders\ContentEntityUnionTypeDataLoader;
 
 class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
@@ -28,7 +28,7 @@ class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
 
     public function getSchemaTypeInterfaceClass(): ?string
     {
-        return PublishableFieldInterfaceResolver::class;
+        return ContentEntityFieldInterfaceResolver::class;
     }
 }
 

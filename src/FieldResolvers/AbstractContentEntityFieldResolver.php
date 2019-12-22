@@ -5,10 +5,8 @@ use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Content\FieldInterfaces\ContentFieldInterfaceResolver;
-use PoP\Content\FieldInterfaces\LinkableFieldInterfaceResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\Content\FieldInterfaces\PublishableFieldInterfaceResolver;
+use PoP\Content\FieldInterfaces\ContentEntityFieldInterfaceResolver;
 
 abstract class AbstractContentEntityFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -20,9 +18,7 @@ abstract class AbstractContentEntityFieldResolver extends AbstractDBDataFieldRes
     public static function getImplementedInterfaceClasses(): array
     {
         return [
-            ContentFieldInterfaceResolver::class,
-            LinkableFieldInterfaceResolver::class,
-            PublishableFieldInterfaceResolver::class,
+            ContentEntityFieldInterfaceResolver::class,
         ];
     }
 

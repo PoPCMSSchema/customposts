@@ -7,10 +7,10 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\AbstractSchemaFieldInterfaceResolver;
 
-class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
+class ContentEntityFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
-    public const NAME = 'Publishable';
-    public const POST_STATUSES = [
+    public const NAME = 'ContentEntity';
+    public const STATUSES = [
         \POP_POSTSTATUS_PUBLISHED,
         \POP_POSTSTATUS_PENDING,
         \POP_POSTSTATUS_DRAFT,
@@ -24,6 +24,10 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
     public static function getFieldNamesToImplement(): array
     {
         return [
+            'title',
+            'content',
+            'excerpt',
+            'url',
             'status',
             'is-status',
             'date',
@@ -34,6 +38,10 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
+            'title' => SchemaDefinition::TYPE_STRING,
+            'content' => SchemaDefinition::TYPE_STRING,
+            'excerpt' => SchemaDefinition::TYPE_STRING,
+            'url' => SchemaDefinition::TYPE_URL,
             'status' => SchemaDefinition::TYPE_ENUM,
             'is-status' => SchemaDefinition::TYPE_BOOL,
             'date' => SchemaDefinition::TYPE_DATE,
@@ -46,6 +54,10 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
+            'title' => $translationAPI->__('Post title', 'content'),
+            'content' => $translationAPI->__('Post content', 'content'),
+            'excerpt' => $translationAPI->__('Post excerpt', 'content'),
+            'url' => $translationAPI->__('Post URL', 'content'),
             'post-type' => $translationAPI->__('Post type', 'content'),
             'status' => $translationAPI->__('Post status', 'content'),
             'is-status' => $translationAPI->__('Is the post in the given status?', 'content'),
@@ -94,7 +106,7 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
                         SchemaDefinition::ARGNAME_NAME => 'status',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                         SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
-                        SchemaDefinition::ARGNAME_ENUMVALUES => self::POST_STATUSES,
+                        SchemaDefinition::ARGNAME_ENUMVALUES => self::STATUSES,
                         SchemaDefinition::ARGNAME_MANDATORY => true,
                     ],
                 ];
@@ -107,7 +119,7 @@ class PublishableFieldInterfaceResolver extends AbstractSchemaFieldInterfaceReso
     {
         switch ($fieldName) {
             case 'status':
-                $schemaDefinition[SchemaDefinition::ARGNAME_ENUMVALUES] = self::POST_STATUSES;
+                $schemaDefinition[SchemaDefinition::ARGNAME_ENUMVALUES] = self::STATUSES;
                 break;
         }
     }
