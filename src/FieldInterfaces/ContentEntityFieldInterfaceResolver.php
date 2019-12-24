@@ -3,7 +3,6 @@ namespace PoP\Content\FieldInterfaces;
 
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Content\FieldInterfaces\ContentEntryFieldInterfaceResolver;
 
