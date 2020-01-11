@@ -5,10 +5,13 @@ use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
 use PoP\ComponentModel\FieldResolvers\AbstractSchemaFieldInterfaceResolver;
 
 class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
+    use EnumTypeSchemaDefinitionResolverTrait;
+
     public const NAME = 'ContentEntry';
     public const STATUSES = [
         \POP_POSTSTATUS_PUBLISHED,
@@ -109,12 +112,12 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         return parent::getSchemaFieldArgs($typeResolver, $fieldName);
     }
 
-    public function addSchemaDefinitionForField(array &$schemaDefinition, TypeResolverInterface $typeResolver, string $fieldName): void
+    protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
     {
         switch ($fieldName) {
             case 'status':
-                $schemaDefinition[SchemaDefinition::ARGNAME_ENUMVALUES] = self::STATUSES;
-                break;
+                return self::STATUSES;
         }
+        return null;
     }
 }
