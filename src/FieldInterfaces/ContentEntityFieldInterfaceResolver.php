@@ -14,6 +14,12 @@ class ContentEntityFieldInterfaceResolver extends ContentEntryFieldInterfaceReso
         return self::NAME;
     }
 
+    public function getSchemaInterfaceDescription(): ?string
+    {
+        $translationAPI = TranslationAPIFacade::getInstance();
+        return $translationAPI->__('Entities representing publishable \'content\', with a title', 'content');
+    }
+
     public static function getFieldNamesToImplement(): array
     {
         return array_merge(

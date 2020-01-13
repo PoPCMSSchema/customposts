@@ -24,6 +24,12 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         return self::NAME;
     }
 
+    public function getSchemaInterfaceDescription(): ?string
+    {
+        $translationAPI = TranslationAPIFacade::getInstance();
+        return $translationAPI->__('Entities representing publishable \'content\'', 'content');
+    }
+
     public static function getFieldNamesToImplement(): array
     {
         return [
