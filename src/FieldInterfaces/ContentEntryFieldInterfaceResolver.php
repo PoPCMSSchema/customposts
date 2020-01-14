@@ -127,7 +127,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                                 SchemaDefinition::ARGNAME_NAME => 'trashed',
                                 SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
                                 SchemaDefinition::ARGNAME_DEPRECATED => true,
-                                SchemaDefinition::ARGNAME_DEPRECATEDDESCRIPTION => sprintf(
+                                SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
                                     $translationAPI->__('Use \'%s\' instead', 'content'),
                                     \POP_POSTSTATUS_TRASH
                                 ),
