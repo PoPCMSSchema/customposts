@@ -110,7 +110,30 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                         SchemaDefinition::ARGNAME_NAME => 'status',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                         SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
-                        SchemaDefinition::ARGNAME_ENUMVALUES => self::STATUSES,
+                        // SchemaDefinition::ARGNAME_ENUMVALUES => self::STATUSES,
+                        SchemaDefinition::ARGNAME_ENUMVALUES => [
+                            'publish' => [
+                                SchemaDefinition::ARGNAME_NAME => 'publish',
+                                SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
+                                SchemaDefinition::ARGNAME_DEPRECATED => true,
+                                    SchemaDefinition::ARGNAME_DEPRECATEDDESCRIPTION => sprintf(
+                                    $translationAPI->__('Use \'%s\' instead', 'content'),
+                                    \POP_POSTSTATUS_PUBLISHED
+                                ),
+                            ],
+                            \POP_POSTSTATUS_PUBLISHED => [
+                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PUBLISHED,
+                            ],
+                            \POP_POSTSTATUS_PENDING => [
+                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PENDING,
+                            ],
+                            \POP_POSTSTATUS_DRAFT => [
+                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_DRAFT,
+                            ],
+                            \POP_POSTSTATUS_TRASH => [
+                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_TRASH,
+                            ],
+                        ],
                         SchemaDefinition::ARGNAME_MANDATORY => true,
                     ],
                 ];
