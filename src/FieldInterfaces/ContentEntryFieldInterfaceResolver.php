@@ -14,6 +14,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
 
     public const NAME = 'ContentEntry';
     public const STATUSES = [
+        'publish',
         \POP_POSTSTATUS_PUBLISHED,
         \POP_POSTSTATUS_PENDING,
         \POP_POSTSTATUS_DRAFT,
@@ -123,6 +124,37 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         switch ($fieldName) {
             case 'status':
                 return self::STATUSES;
+        }
+        return null;
+    }
+
+    protected function getSchemaDefinitionEnumValueDeprecationDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    {
+        $translationAPI = TranslationAPIFacade::getInstance();
+        switch ($fieldName) {
+            case 'status':
+                return [
+                    'publish' => sprintf(
+                        $translationAPI->__('Using \'%s\' instead', 'content'),
+                        \POP_POSTSTATUS_PUBLISHED
+                    ),
+                ];
+        }
+        return null;
+    }
+
+    protected function getSchemaDefinitionEnumValueDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    {
+        $translationAPI = TranslationAPIFacade::getInstance();
+        switch ($fieldName) {
+            case 'status':
+                return [
+                    'publish' => $translationAPI->__('Published content', 'content'),
+                    \POP_POSTSTATUS_PUBLISHED => $translationAPI->__('Published content', 'content'),
+                    \POP_POSTSTATUS_PENDING => $translationAPI->__('Pending content', 'content'),
+                    \POP_POSTSTATUS_DRAFT => $translationAPI->__('Draft content', 'content'),
+                    \POP_POSTSTATUS_TRASH => $translationAPI->__('Trashed content', 'content'),
+                ];
         }
         return null;
     }
