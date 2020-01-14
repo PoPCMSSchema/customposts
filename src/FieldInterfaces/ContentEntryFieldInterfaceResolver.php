@@ -14,11 +14,11 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
 
     public const NAME = 'ContentEntry';
     public const STATUSES = [
-        'publish',
         \POP_POSTSTATUS_PUBLISHED,
         \POP_POSTSTATUS_PENDING,
         \POP_POSTSTATUS_DRAFT,
         \POP_POSTSTATUS_TRASH,
+        'trashed',
     ];
     public function getInterfaceName(): string
     {
@@ -110,17 +110,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                         SchemaDefinition::ARGNAME_NAME => 'status',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                         SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
-                        // SchemaDefinition::ARGNAME_ENUMVALUES => self::STATUSES,
                         SchemaDefinition::ARGNAME_ENUMVALUES => [
-                            'publish' => [
-                                SchemaDefinition::ARGNAME_NAME => 'publish',
-                                SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
-                                SchemaDefinition::ARGNAME_DEPRECATED => true,
-                                SchemaDefinition::ARGNAME_DEPRECATEDDESCRIPTION => sprintf(
-                                    $translationAPI->__('Use \'%s\' instead', 'content'),
-                                    \POP_POSTSTATUS_PUBLISHED
-                                ),
-                            ],
                             \POP_POSTSTATUS_PUBLISHED => [
                                 SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PUBLISHED,
                             ],
@@ -132,6 +122,15 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                             ],
                             \POP_POSTSTATUS_TRASH => [
                                 SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_TRASH,
+                            ],
+                            'trashed' => [
+                                SchemaDefinition::ARGNAME_NAME => 'trashed',
+                                SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
+                                SchemaDefinition::ARGNAME_DEPRECATED => true,
+                                SchemaDefinition::ARGNAME_DEPRECATEDDESCRIPTION => sprintf(
+                                    $translationAPI->__('Use \'%s\' instead', 'content'),
+                                    \POP_POSTSTATUS_TRASH
+                                ),
                             ],
                         ],
                         SchemaDefinition::ARGNAME_MANDATORY => true,
@@ -157,9 +156,9 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         switch ($fieldName) {
             case 'status':
                 return [
-                    'publish' => sprintf(
+                    'trashed' => sprintf(
                         $translationAPI->__('Using \'%s\' instead', 'content'),
-                        \POP_POSTSTATUS_PUBLISHED
+                        \POP_POSTSTATUS_TRASH
                     ),
                 ];
         }
@@ -172,11 +171,11 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         switch ($fieldName) {
             case 'status':
                 return [
-                    'publish' => $translationAPI->__('Published content', 'content'),
                     \POP_POSTSTATUS_PUBLISHED => $translationAPI->__('Published content', 'content'),
                     \POP_POSTSTATUS_PENDING => $translationAPI->__('Pending content', 'content'),
                     \POP_POSTSTATUS_DRAFT => $translationAPI->__('Draft content', 'content'),
                     \POP_POSTSTATUS_TRASH => $translationAPI->__('Trashed content', 'content'),
+                    'trashed' => $translationAPI->__('Trashed content', 'content'),
                 ];
         }
         return null;
