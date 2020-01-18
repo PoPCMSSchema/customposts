@@ -37,7 +37,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
             'content',
             'url',
             'status',
-            'is-status',
+            'isStatus',
             'date',
             'datetime',
         ];
@@ -49,7 +49,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
             'content' => SchemaDefinition::TYPE_STRING,
             'url' => SchemaDefinition::TYPE_URL,
             'status' => SchemaDefinition::TYPE_ENUM,
-            'is-status' => SchemaDefinition::TYPE_BOOL,
+            'isStatus' => SchemaDefinition::TYPE_BOOL,
             'date' => SchemaDefinition::TYPE_DATE,
             'datetime' => SchemaDefinition::TYPE_DATE,
         ];
@@ -62,9 +62,9 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         $descriptions = [
             'content' => $translationAPI->__('Post content', 'content'),
             'url' => $translationAPI->__('Post URL', 'content'),
-            'post-type' => $translationAPI->__('Post type', 'content'),
+            'postType' => $translationAPI->__('Post type', 'content'),
             'status' => $translationAPI->__('Post status', 'content'),
-            'is-status' => $translationAPI->__('Is the post in the given status?', 'content'),
+            'isStatus' => $translationAPI->__('Is the post in the given status?', 'content'),
             'date' => $translationAPI->__('Post published date', 'content'),
             'datetime' => $translationAPI->__('Post published date and time', 'content'),
         ];
@@ -106,7 +106,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                         // ),
                     ],
                 ];
-            case 'is-status':
+            case 'isStatus':
                 return [
                     [
                         SchemaDefinition::ARGNAME_NAME => 'status',

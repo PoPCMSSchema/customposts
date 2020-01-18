@@ -39,7 +39,7 @@ abstract class AbstractContentEntryFieldResolver extends AbstractDBDataFieldReso
             case 'status':
                 return $contentEntryTypeAPI->getStatus($resultItem);
 
-            case 'is-status':
+            case 'isStatus':
                 return $fieldArgs['status'] == $contentEntryTypeAPI->getStatus($resultItem);
 
             case 'date':
