@@ -94,14 +94,16 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                         SchemaDefinition::ARGNAME_NAME => 'format',
                         SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
                         SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                            $translationAPI->__('Date and time format, as defined in %s', 'content'),
-                            'https://www.php.net/manual/en/function.date.php'
-                        ),
-                        SchemaDefinition::ARGNAME_DEFAULT_VALUE => sprintf(
-                            $translationAPI->__('\'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
+                            $translationAPI->__('Date and time format, as defined in %s. Default value: \'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
+                            'https://www.php.net/manual/en/function.date.php',
                             'j M, H:i',
                             'j M Y, H:i'
                         ),
+                        // SchemaDefinition::ARGNAME_DEFAULT_VALUE => sprintf(
+                        //     $translationAPI->__('\'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
+                        //     'j M, H:i',
+                        //     'j M Y, H:i'
+                        // ),
                     ],
                 ];
             case 'is-status':
