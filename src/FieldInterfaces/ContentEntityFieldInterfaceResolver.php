@@ -14,6 +14,16 @@ class ContentEntityFieldInterfaceResolver extends ContentEntryFieldInterfaceReso
         return self::NAME;
     }
 
+    public static function getImplementedInterfaceClasses(): array
+    {
+        return array_merge(
+            parent::getImplementedInterfaceClasses(),
+            [
+                ContentEntryFieldInterfaceResolver::class,
+            ]
+        );
+    }
+
     public function getSchemaInterfaceDescription(): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
