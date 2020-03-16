@@ -1,0 +1,4 @@
+services:
+    PoP\Content\TypeResolvers\:
+        resource: '../src/TypeResolvers/*'
+        public: true
