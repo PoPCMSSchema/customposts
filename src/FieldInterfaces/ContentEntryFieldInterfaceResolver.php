@@ -73,74 +73,81 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
 
     public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
     {
+        $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
         $translationAPI = TranslationAPIFacade::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
         switch ($fieldName) {
             case 'date':
-                return [
+                return array_merge(
+                    $schemaFieldArgs,
                     [
-                        SchemaDefinition::ARGNAME_NAME => 'format',
-                        SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
-                        SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                            $translationAPI->__('Date format, as defined in %s', 'content'),
-                            'https://www.php.net/manual/en/function.date.php'
-                        ),
-                        SchemaDefinition::ARGNAME_DEFAULT_VALUE => $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat')),
-                    ],
-                ];
-            case 'datetime':
-                return [
-                    [
-                        SchemaDefinition::ARGNAME_NAME => 'format',
-                        SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
-                        SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                            $translationAPI->__('Date and time format, as defined in %s. Default value: \'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
-                            'https://www.php.net/manual/en/function.date.php',
-                            'j M, H:i',
-                            'j M Y, H:i'
-                        ),
-                        // SchemaDefinition::ARGNAME_DEFAULT_VALUE => sprintf(
-                        //     $translationAPI->__('\'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
-                        //     'j M, H:i',
-                        //     'j M Y, H:i'
-                        // ),
-                    ],
-                ];
-            case 'isStatus':
-                return [
-                    [
-                        SchemaDefinition::ARGNAME_NAME => 'status',
-                        SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
-                        SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
-                        SchemaDefinition::ARGNAME_ENUMVALUES => [
-                            \POP_POSTSTATUS_PUBLISHED => [
-                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PUBLISHED,
-                            ],
-                            \POP_POSTSTATUS_PENDING => [
-                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PENDING,
-                            ],
-                            \POP_POSTSTATUS_DRAFT => [
-                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_DRAFT,
-                            ],
-                            \POP_POSTSTATUS_TRASH => [
-                                SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_TRASH,
-                            ],
-                            'trashed' => [
-                                SchemaDefinition::ARGNAME_NAME => 'trashed',
-                                SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
-                                SchemaDefinition::ARGNAME_DEPRECATED => true,
-                                SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
-                                    $translationAPI->__('Use \'%s\' instead', 'content'),
-                                    \POP_POSTSTATUS_TRASH
-                                ),
-                            ],
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'format',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
+                                $translationAPI->__('Date format, as defined in %s', 'content'),
+                                'https://www.php.net/manual/en/function.date.php'
+                            ),
+                            SchemaDefinition::ARGNAME_DEFAULT_VALUE => $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat')),
                         ],
-                        SchemaDefinition::ARGNAME_MANDATORY => true,
-                    ],
-                ];
+                    ]
+                );
+
+            case 'datetime':
+                return array_merge(
+                    $schemaFieldArgs,
+                    [
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'format',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
+                                $translationAPI->__('Date and time format, as defined in %s. Default value: \'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
+                                'https://www.php.net/manual/en/function.date.php',
+                                'j M, H:i',
+                                'j M Y, H:i'
+                            ),
+                        ],
+                    ]
+                );
+
+            case 'isStatus':
+                return array_merge(
+                    $schemaFieldArgs,
+                    [
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'status',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
+                            SchemaDefinition::ARGNAME_ENUMVALUES => [
+                                \POP_POSTSTATUS_PUBLISHED => [
+                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PUBLISHED,
+                                ],
+                                \POP_POSTSTATUS_PENDING => [
+                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PENDING,
+                                ],
+                                \POP_POSTSTATUS_DRAFT => [
+                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_DRAFT,
+                                ],
+                                \POP_POSTSTATUS_TRASH => [
+                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_TRASH,
+                                ],
+                                'trashed' => [
+                                    SchemaDefinition::ARGNAME_NAME => 'trashed',
+                                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
+                                    SchemaDefinition::ARGNAME_DEPRECATED => true,
+                                    SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
+                                        $translationAPI->__('Use \'%s\' instead', 'content'),
+                                        \POP_POSTSTATUS_TRASH
+                                    ),
+                                ],
+                            ],
+                            SchemaDefinition::ARGNAME_MANDATORY => true,
+                        ],
+                    ]
+                );
         }
 
-        return parent::getSchemaFieldArgs($typeResolver, $fieldName);
+        return $schemaFieldArgs;
     }
 
     protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
