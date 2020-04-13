@@ -31,4 +31,3 @@ class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
         return ContentEntityFieldInterfaceResolver::class;
     }
 }
-

@@ -22,7 +22,7 @@ abstract class AbstractContentEntryFieldResolver extends AbstractDBDataFieldReso
         ];
     }
 
-    protected abstract function getContentEntryTypeAPI(): ContentEntryTypeAPIInterface;
+    abstract protected function getContentEntryTypeAPI(): ContentEntryTypeAPIInterface;
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {

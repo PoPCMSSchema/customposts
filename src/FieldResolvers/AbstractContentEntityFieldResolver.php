@@ -24,7 +24,7 @@ abstract class AbstractContentEntityFieldResolver extends AbstractContentEntryFi
         );
     }
 
-    protected abstract function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface;
+    abstract protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface;
 
     protected function getContentEntryTypeAPI(): ContentEntryTypeAPIInterface
     {
