@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace PoP\Content\TypeAPIs;
 
 use PoP\Content\TypeAPIs\ContentEntryTypeAPIInterface;
