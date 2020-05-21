@@ -20,12 +20,13 @@ Via Composer
 composer require getpop/content
 ```
 
-<!--
 ## Usage
 
+Initialize the component:
+
 ``` php
+\PoP\Content\Component::initialize();
 ```
--->
 
 ## Standards
 
