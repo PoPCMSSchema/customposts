@@ -10,6 +10,7 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
 use PoP\ComponentModel\FieldResolvers\AbstractSchemaFieldInterfaceResolver;
+use PoP\Content\Types\Status;
 
 class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
@@ -17,10 +18,10 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
 
     public const NAME = 'ContentEntry';
     public const STATUSES = [
-        \POP_POSTSTATUS_PUBLISHED,
-        \POP_POSTSTATUS_PENDING,
-        \POP_POSTSTATUS_DRAFT,
-        \POP_POSTSTATUS_TRASH,
+        Status::PUBLISHED,
+        Status::PENDING,
+        Status::DRAFT,
+        Status::TRASH,
         'trashed',
     ];
     public function getInterfaceName(): string
@@ -122,17 +123,17 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                             SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
                             SchemaDefinition::ARGNAME_ENUMVALUES => [
-                                \POP_POSTSTATUS_PUBLISHED => [
-                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PUBLISHED,
+                                Status::PUBLISHED => [
+                                    SchemaDefinition::ARGNAME_NAME => Status::PUBLISHED,
                                 ],
-                                \POP_POSTSTATUS_PENDING => [
-                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_PENDING,
+                                Status::PENDING => [
+                                    SchemaDefinition::ARGNAME_NAME => Status::PENDING,
                                 ],
-                                \POP_POSTSTATUS_DRAFT => [
-                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_DRAFT,
+                                Status::DRAFT => [
+                                    SchemaDefinition::ARGNAME_NAME => Status::DRAFT,
                                 ],
-                                \POP_POSTSTATUS_TRASH => [
-                                    SchemaDefinition::ARGNAME_NAME => \POP_POSTSTATUS_TRASH,
+                                Status::TRASH => [
+                                    SchemaDefinition::ARGNAME_NAME => Status::TRASH,
                                 ],
                                 'trashed' => [
                                     SchemaDefinition::ARGNAME_NAME => 'trashed',
@@ -140,7 +141,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                                     SchemaDefinition::ARGNAME_DEPRECATED => true,
                                     SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
                                         $translationAPI->__('Use \'%s\' instead', 'content'),
-                                        \POP_POSTSTATUS_TRASH
+                                        Status::TRASH
                                     ),
                                 ],
                             ],
@@ -170,7 +171,7 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
                 return [
                     'trashed' => sprintf(
                         $translationAPI->__('Using \'%s\' instead', 'content'),
-                        \POP_POSTSTATUS_TRASH
+                        Status::TRASH
                     ),
                 ];
         }
@@ -183,10 +184,10 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         switch ($fieldName) {
             case 'status':
                 return [
-                    \POP_POSTSTATUS_PUBLISHED => $translationAPI->__('Published content', 'content'),
-                    \POP_POSTSTATUS_PENDING => $translationAPI->__('Pending content', 'content'),
-                    \POP_POSTSTATUS_DRAFT => $translationAPI->__('Draft content', 'content'),
-                    \POP_POSTSTATUS_TRASH => $translationAPI->__('Trashed content', 'content'),
+                    Status::PUBLISHED => $translationAPI->__('Published content', 'content'),
+                    Status::PENDING => $translationAPI->__('Pending content', 'content'),
+                    Status::DRAFT => $translationAPI->__('Draft content', 'content'),
+                    Status::TRASH => $translationAPI->__('Trashed content', 'content'),
                     'trashed' => $translationAPI->__('Trashed content', 'content'),
                 ];
         }

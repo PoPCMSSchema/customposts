@@ -14,6 +14,7 @@ use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
 use PoP\Content\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
+use PoP\Content\Types\Status;
 
 abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -84,22 +85,18 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
     {
         switch ($fieldName) {
             case 'contentEntities':
-                $query = [
+                return [
                     'limit' => ComponentConfiguration::getContentEntityListDefaultLimit(),
                     'types-from-union-resolver-class' => ContentEntityUnionTypeResolver::class,
-                    // 'post-status' => [
-                    //     \POP_POSTSTATUS_PUBLISHED,
-                    // ],
+                    'post-status' => [
+                        Status::PUBLISHED,
+                    ],
                 ];
-                // if ($fieldName == 'contentEntities') {
-                //     $query['types-from-union-resolver-class'] = ContentEntityUnionTypeResolver::class;
-                // }
-                return $query;
             case 'contentEntityCount':
                 return [
-                    // 'post-status' => [
-                    //     \POP_POSTSTATUS_PUBLISHED,
-                    // ],
+                    'post-status' => [
+                        Status::PUBLISHED,
+                    ],
                 ];
         }
         return [];
