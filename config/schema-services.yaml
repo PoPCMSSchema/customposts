@@ -1,4 +1,8 @@
 services:
+    PoP\Content\FieldResolvers\:
+        resource: '../src/FieldResolvers/*'
+        public: true
+
     PoP\Content\TypeResolvers\:
         resource: '../src/TypeResolvers/*'
         public: true
