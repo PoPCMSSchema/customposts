@@ -94,6 +94,7 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
                 ];
             case 'contentEntityCount':
                 return [
+                    'types-from-union-resolver-class' => ContentEntityUnionTypeResolver::class,
                     'post-status' => [
                         Status::PUBLISHED,
                     ],
