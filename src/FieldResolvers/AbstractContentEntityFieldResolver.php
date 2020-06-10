@@ -7,6 +7,7 @@ namespace PoP\Content\FieldResolvers;
 use PoP\Content\TypeAPIs\ContentEntryTypeAPIInterface;
 use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\Content\Facades\ContentEntityTypeAPIFacade;
 use PoP\Content\FieldResolvers\AbstractContentEntryFieldResolver;
 use PoP\Content\FieldInterfaces\ContentEntityFieldInterfaceResolver;
 
@@ -27,7 +28,11 @@ abstract class AbstractContentEntityFieldResolver extends AbstractContentEntryFi
         );
     }
 
-    abstract protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface;
+    protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface
+    {
+        $contentEntityTypeAPI = ContentEntityTypeAPIFacade::getInstance();
+        return $contentEntityTypeAPI;
+    }
 
     protected function getContentEntryTypeAPI(): ContentEntryTypeAPIInterface
     {
