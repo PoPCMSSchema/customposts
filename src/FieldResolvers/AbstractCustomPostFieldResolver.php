@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content\FieldResolvers;
+namespace PoP\CustomPosts\FieldResolvers;
 
-use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
+use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Content\Facades\CustomPostTypeAPIFacade;
-use PoP\Content\FieldInterfaces\CustomPostFieldInterfaceResolver;
+use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoP\CustomPosts\FieldInterfaces\CustomPostFieldInterfaceResolver;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;

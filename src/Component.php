@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content;
+namespace PoP\CustomPosts;
 
 use PoP\Root\Component\AbstractComponent;
 use PoP\Root\Component\YAMLServicesTrait;

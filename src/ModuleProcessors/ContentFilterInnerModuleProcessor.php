@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content\ModuleProcessors;
+namespace PoP\CustomPosts\ModuleProcessors;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\ComponentModel\ModuleProcessors\AbstractModuleProcessor;

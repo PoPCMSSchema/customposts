@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content\FieldResolvers;
+namespace PoP\CustomPosts\FieldResolvers;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 

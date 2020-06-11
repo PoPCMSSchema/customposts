@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://github.com/getpop/content).
+We accept contributions via Pull Requests on [Github](https://github.com/getpop/custom-posts).
 
 
 ## Pull Requests

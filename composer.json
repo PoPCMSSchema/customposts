@@ -1,12 +1,12 @@
 {
-    "name": "getpop/content",
+    "name": "getpop/custom-posts",
     "type": "library",
-    "description": "Interfaces and helpers for content-related entities (eg: posts, articles, etc)",
+    "description": "Interfaces and helpers for custom-posts (eg: posts, articles, etc)",
     "keywords": [
         "PoP",
-        "content"
+        "custom-posts"
     ],
-    "homepage": "https://github.com/PoPSchema/content",
+    "homepage": "https://github.com/PoPSchema/custom-posts",
     "license": "MIT",
     "authors": [
         {
@@ -28,12 +28,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PoP\\Content\\": "src"
+            "PoP\\CustomPosts\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PoP\\Content\\": "tests"
+            "PoP\\CustomPosts\\": "tests"
         }
     },
     "scripts": {

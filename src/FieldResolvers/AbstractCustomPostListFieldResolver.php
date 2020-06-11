@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content\FieldResolvers;
+namespace PoP\CustomPosts\FieldResolvers;
 
-use PoP\Content\ComponentConfiguration;
+use PoP\CustomPosts\ComponentConfiguration;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\Content\Facades\CustomPostTypeListAPIFacade;
+use PoP\CustomPosts\Facades\CustomPostTypeListAPIFacade;
 use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Content\TypeResolvers\CustomPostUnionTypeResolver;
+use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
-use PoP\Content\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
-use PoP\Content\Types\Status;
+use PoP\CustomPosts\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
+use PoP\CustomPosts\Types\Status;
 
 abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFieldResolver
 {

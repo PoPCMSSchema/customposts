@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content;
+namespace PoP\CustomPosts;
 
 class Environment
 {

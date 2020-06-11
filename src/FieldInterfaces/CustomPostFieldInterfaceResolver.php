@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\Content\FieldInterfaces;
+namespace PoP\CustomPosts\FieldInterfaces;
 
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
@@ -10,7 +10,7 @@ use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldInterfaceResolvers\AbstractSchemaFieldInterfaceResolver;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
-use PoP\Content\Types\Status;
+use PoP\CustomPosts\Types\Status;
 
 class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
