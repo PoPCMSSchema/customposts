@@ -9,6 +9,6 @@ namespace PoP\Content\TypeAPIs;
  */
 interface CustomPostTypeListAPIInterface
 {
-    public function getContentEntities($query, array $options = []);
+    public function getCustomPosts($query, array $options = []);
     public function getCustomPostCount(array $query = [], array $options = []): int;
 }

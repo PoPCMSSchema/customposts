@@ -11,6 +11,6 @@ class CustomPostTypeListAPIFacade
 {
     public static function getInstance(): CustomPostTypeListAPIInterface
     {
-        return ContainerBuilderFactory::getInstance()->get('content_entity_type_list_api');
+        return ContainerBuilderFactory::getInstance()->get('custom_post_type_list_api');
     }
 }

@@ -17,7 +17,7 @@ class ComponentConfiguration
     public static function getCustomPostListDefaultLimit(): ?int
     {
         // Define properties
-        $envVariable = Environment::CONTENT_ENTITY_LIST_DEFAULT_LIMIT;
+        $envVariable = Environment::CUSTOM_POST_LIST_DEFAULT_LIMIT;
         $selfProperty = &self::$getCustomPostListDefaultLimit;
         $defaultValue = 10;
         $callback = [EnvironmentValueHelpers::class, 'toInt'];
@@ -35,7 +35,7 @@ class ComponentConfiguration
     public static function getCustomPostListMaxLimit(): ?int
     {
         // Define properties
-        $envVariable = Environment::CONTENT_ENTITY_LIST_MAX_LIMIT;
+        $envVariable = Environment::CUSTOM_POST_LIST_MAX_LIMIT;
         $selfProperty = &self::$getCustomPostListMaxLimit;
         $defaultValue = -1; // Unlimited
         $callback = [EnvironmentValueHelpers::class, 'toInt'];

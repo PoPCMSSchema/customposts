@@ -21,16 +21,16 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     public static function getFieldNamesToResolve(): array
     {
         return [
-            'contentEntities',
-            'contentEntityCount',
+            'customPosts',
+            'customPostCount',
         ];
     }
 
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
-            'contentEntities' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
-            'contentEntityCount' => SchemaDefinition::TYPE_INT,
+            'customPosts' => TypeCastingHelpers::makeArray(SchemaDefinition::TYPE_ID),
+            'customPostCount' => SchemaDefinition::TYPE_INT,
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -38,8 +38,8 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     public function isSchemaFieldResponseNonNullable(TypeResolverInterface $typeResolver, string $fieldName): bool
     {
         switch ($fieldName) {
-            case 'contentEntities':
-            case 'contentEntityCount':
+            case 'customPosts':
+            case 'customPostCount':
                 return true;
         }
         return parent::isSchemaFieldResponseNonNullable($typeResolver, $fieldName);
@@ -49,8 +49,8 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-            'contentEntities' => $translationAPI->__('Entries considered “content” (eg: posts, events)', 'pop-posts'),
-            'contentEntityCount' => $translationAPI->__('Number of entries considered “content” (eg: posts, events)', 'pop-posts'),
+            'customPosts' => $translationAPI->__('Custom posts', 'pop-posts'),
+            'customPostCount' => $translationAPI->__('Number of custom posts', 'pop-posts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
@@ -59,8 +59,8 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     {
         $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
         switch ($fieldName) {
-            case 'contentEntities':
-            case 'contentEntityCount':
+            case 'customPosts':
+            case 'customPostCount':
                 return array_merge(
                     $schemaFieldArgs,
                     $this->getFieldArgumentsSchemaDefinitions($typeResolver, $fieldName)
@@ -72,8 +72,8 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     public function enableOrderedSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): bool
     {
         switch ($fieldName) {
-            case 'contentEntities':
-            case 'contentEntityCount':
+            case 'customPosts':
+            case 'customPostCount':
                 return false;
         }
         return parent::enableOrderedSchemaFieldArgs($typeResolver, $fieldName);
@@ -82,7 +82,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     protected function getFieldDefaultFilterDataloadingModule(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?array
     {
         switch ($fieldName) {
-            case 'contentEntityCount':
+            case 'customPostCount':
                 return [
                     ContentRelationalFieldDataloadModuleProcessor::class,
                     ContentRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTCOUNT
@@ -94,7 +94,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     protected function getQuery(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = []): array
     {
         switch ($fieldName) {
-            case 'contentEntities':
+            case 'customPosts':
                 return [
                     'limit' => ComponentConfiguration::getCustomPostListDefaultLimit(),
                     'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
@@ -102,7 +102,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
                         Status::PUBLISHED,
                     ],
                 ];
-            case 'contentEntityCount':
+            case 'customPostCount':
                 return [
                     'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
                     'post-status' => [
@@ -117,14 +117,14 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     {
         $contentTypeListAPI = CustomPostTypeListAPIFacade::getInstance();
         switch ($fieldName) {
-            case 'contentEntities':
+            case 'customPosts':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
                     'return-type' => POP_RETURNTYPE_IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $contentTypeListAPI->getContentEntities($query, $options);
-            case 'contentEntityCount':
+                return $contentTypeListAPI->getCustomPosts($query, $options);
+            case 'customPostCount':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
@@ -137,7 +137,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
     public function resolveFieldTypeResolverClass(TypeResolverInterface $typeResolver, string $fieldName, array $fieldArgs = []): ?string
     {
         switch ($fieldName) {
-            case 'contentEntities':
+            case 'customPosts':
                 return UnionTypeHelpers::getUnionOrTargetTypeResolverClass(CustomPostUnionTypeResolver::class);
         }
 
