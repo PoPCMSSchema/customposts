@@ -12,11 +12,11 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
 use PoP\Content\Types\Status;
 
-class ContentEntityFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
+class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
     use EnumTypeSchemaDefinitionResolverTrait;
 
-    public const NAME = 'ContentEntity';
+    public const NAME = 'CustomPost';
     public const STATUSES = [
         Status::PUBLISHED,
         Status::PENDING,

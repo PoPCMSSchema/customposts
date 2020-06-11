@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace PoP\Content\Facades;
 
-use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
+use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\Root\Container\ContainerBuilderFactory;
 
-class ContentEntityTypeAPIFacade
+class CustomPostTypeAPIFacade
 {
-    public static function getInstance(): ContentEntityTypeAPIInterface
+    public static function getInstance(): CustomPostTypeAPIInterface
     {
         return ContainerBuilderFactory::getInstance()->get('content_entity_type_api');
     }

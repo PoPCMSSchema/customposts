@@ -6,7 +6,7 @@ namespace PoP\Content\FieldResolvers;
 
 use PoP\Engine\TypeResolvers\RootTypeResolver;
 
-class RootContentEntityListFieldResolver extends AbstractContentEntityListFieldResolver
+class RootCustomPostListFieldResolver extends AbstractCustomPostListFieldResolver
 {
     public static function getClassesToAttachTo(): array
     {

@@ -7,8 +7,8 @@ namespace PoP\Content\TypeAPIs;
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
  */
-interface ContentEntityTypeListAPIInterface
+interface CustomPostTypeListAPIInterface
 {
     public function getContentEntities($query, array $options = []);
-    public function getContentEntityCount(array $query = [], array $options = []): int;
+    public function getCustomPostCount(array $query = [], array $options = []): int;
 }

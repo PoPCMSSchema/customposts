@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace PoP\Content\FieldResolvers;
 
-use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
+use PoP\Content\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Content\Facades\ContentEntityTypeAPIFacade;
-use PoP\Content\FieldInterfaces\ContentEntityFieldInterfaceResolver;
+use PoP\Content\Facades\CustomPostTypeAPIFacade;
+use PoP\Content\FieldInterfaces\CustomPostFieldInterfaceResolver;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 
-abstract class AbstractContentEntityFieldResolver extends AbstractDBDataFieldResolver
+abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolver
 {
     public static function getFieldNamesToResolve(): array
     {
@@ -22,20 +22,20 @@ abstract class AbstractContentEntityFieldResolver extends AbstractDBDataFieldRes
     public static function getImplementedInterfaceClasses(): array
     {
         return [
-            ContentEntityFieldInterfaceResolver::class,
+            CustomPostFieldInterfaceResolver::class,
         ];
     }
 
-    protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface
+    protected function getCustomPostTypeAPI(): CustomPostTypeAPIInterface
     {
-        $contentEntityTypeAPI = ContentEntityTypeAPIFacade::getInstance();
+        $contentEntityTypeAPI = CustomPostTypeAPIFacade::getInstance();
         return $contentEntityTypeAPI;
     }
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
-        $contentEntityTypeAPI = $this->getContentEntityTypeAPI();
+        $contentEntityTypeAPI = $this->getCustomPostTypeAPI();
         switch ($fieldName) {
             case 'content':
                 $value = $contentEntityTypeAPI->getContent($resultItem);

@@ -11,14 +11,14 @@ class ComponentConfiguration
 {
     use ComponentConfigurationTrait;
 
-    private static $getContentEntityListDefaultLimit;
-    private static $getContentEntityListMaxLimit;
+    private static $getCustomPostListDefaultLimit;
+    private static $getCustomPostListMaxLimit;
 
-    public static function getContentEntityListDefaultLimit(): ?int
+    public static function getCustomPostListDefaultLimit(): ?int
     {
         // Define properties
         $envVariable = Environment::CONTENT_ENTITY_LIST_DEFAULT_LIMIT;
-        $selfProperty = &self::$getContentEntityListDefaultLimit;
+        $selfProperty = &self::$getCustomPostListDefaultLimit;
         $defaultValue = 10;
         $callback = [EnvironmentValueHelpers::class, 'toInt'];
 
@@ -32,11 +32,11 @@ class ComponentConfiguration
         return $selfProperty;
     }
 
-    public static function getContentEntityListMaxLimit(): ?int
+    public static function getCustomPostListMaxLimit(): ?int
     {
         // Define properties
         $envVariable = Environment::CONTENT_ENTITY_LIST_MAX_LIMIT;
-        $selfProperty = &self::$getContentEntityListMaxLimit;
+        $selfProperty = &self::$getCustomPostListMaxLimit;
         $defaultValue = -1; // Unlimited
         $callback = [EnvironmentValueHelpers::class, 'toInt'];
 

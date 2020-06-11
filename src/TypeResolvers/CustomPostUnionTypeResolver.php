@@ -6,12 +6,12 @@ namespace PoP\Content\TypeResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
-use PoP\Content\FieldInterfaces\ContentEntityFieldInterfaceResolver;
-use PoP\Content\TypeDataLoaders\ContentEntityUnionTypeDataLoader;
+use PoP\Content\FieldInterfaces\CustomPostFieldInterfaceResolver;
+use PoP\Content\TypeDataLoaders\CustomPostUnionTypeDataLoader;
 
-class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
+class CustomPostUnionTypeResolver extends AbstractUnionTypeResolver
 {
-    public const NAME = 'ContentEntityUnion';
+    public const NAME = 'CustomPostUnion';
 
     public function getTypeName(): string
     {
@@ -26,11 +26,11 @@ class ContentEntityUnionTypeResolver extends AbstractUnionTypeResolver
 
     public function getTypeDataLoaderClass(): string
     {
-        return ContentEntityUnionTypeDataLoader::class;
+        return CustomPostUnionTypeDataLoader::class;
     }
 
     public function getSchemaTypeInterfaceClass(): ?string
     {
-        return ContentEntityFieldInterfaceResolver::class;
+        return CustomPostFieldInterfaceResolver::class;
     }
 }

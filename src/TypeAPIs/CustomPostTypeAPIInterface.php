@@ -7,7 +7,7 @@ namespace PoP\Content\TypeAPIs;
 /**
  * Methods to interact with the Type, to be implemented by the underlying CMS
  */
-interface ContentEntityTypeAPIInterface
+interface CustomPostTypeAPIInterface
 {
     /**
      * Return the object's ID

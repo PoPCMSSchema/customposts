@@ -8,15 +8,15 @@ use PoP\Content\ComponentConfiguration;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\Content\Facades\ContentEntityTypeListAPIFacade;
+use PoP\Content\Facades\CustomPostTypeListAPIFacade;
 use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
+use PoP\Content\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
 use PoP\Content\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
 use PoP\Content\Types\Status;
 
-abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableFieldResolver
+abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFieldResolver
 {
     public static function getFieldNamesToResolve(): array
     {
@@ -96,15 +96,15 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
         switch ($fieldName) {
             case 'contentEntities':
                 return [
-                    'limit' => ComponentConfiguration::getContentEntityListDefaultLimit(),
-                    'types-from-union-resolver-class' => ContentEntityUnionTypeResolver::class,
+                    'limit' => ComponentConfiguration::getCustomPostListDefaultLimit(),
+                    'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
                     'post-status' => [
                         Status::PUBLISHED,
                     ],
                 ];
             case 'contentEntityCount':
                 return [
-                    'types-from-union-resolver-class' => ContentEntityUnionTypeResolver::class,
+                    'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
                     'post-status' => [
                         Status::PUBLISHED,
                     ],
@@ -115,7 +115,7 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
-        $contentTypeListAPI = ContentEntityTypeListAPIFacade::getInstance();
+        $contentTypeListAPI = CustomPostTypeListAPIFacade::getInstance();
         switch ($fieldName) {
             case 'contentEntities':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
@@ -128,7 +128,7 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $contentTypeListAPI->getContentEntityCount($query, $options);
+                return $contentTypeListAPI->getCustomPostCount($query, $options);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
@@ -138,7 +138,7 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
     {
         switch ($fieldName) {
             case 'contentEntities':
-                return UnionTypeHelpers::getUnionOrTargetTypeResolverClass(ContentEntityUnionTypeResolver::class);
+                return UnionTypeHelpers::getUnionOrTargetTypeResolverClass(CustomPostUnionTypeResolver::class);
         }
 
         return parent::resolveFieldTypeResolverClass($typeResolver, $fieldName, $fieldArgs);

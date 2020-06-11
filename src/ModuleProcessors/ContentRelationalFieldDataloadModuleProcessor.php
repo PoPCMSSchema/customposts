@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace PoP\Content\ModuleProcessors;
 
-use PoP\Content\TypeResolvers\ContentEntityUnionTypeResolver;
+use PoP\Content\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\QueriedObject\ModuleProcessors\QueriedDBObjectModuleProcessorTrait;
 use PoP\API\ModuleProcessors\AbstractRelationalFieldDataloadModuleProcessor;
 use PoP\ComponentModel\QueryInputOutputHandlers\ListQueryInputOutputHandler;
@@ -41,7 +41,7 @@ class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFi
         switch ($module[1]) {
             case self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECONTENT:
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTLIST:
-                return ContentEntityUnionTypeResolver::class;
+                return CustomPostUnionTypeResolver::class;
         }
 
         return parent::getTypeResolverClass($module);
