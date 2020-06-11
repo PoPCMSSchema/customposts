@@ -123,12 +123,12 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
                     'return-type' => POP_RETURNTYPE_IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $contentTypeListAPI->getContentEntries($query, $options);
+                return $contentTypeListAPI->getContentEntities($query, $options);
             case 'contentEntityCount':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $contentTypeListAPI->getContentEntryCount($query, $options);
+                return $contentTypeListAPI->getContentEntityCount($query, $options);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);

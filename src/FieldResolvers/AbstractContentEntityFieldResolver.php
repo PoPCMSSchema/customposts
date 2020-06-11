@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace PoP\Content\FieldResolvers;
 
-use PoP\Content\TypeAPIs\ContentEntryTypeAPIInterface;
 use PoP\Content\TypeAPIs\ContentEntityTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\Content\Facades\ContentEntityTypeAPIFacade;
-use PoP\Content\FieldResolvers\AbstractContentEntryFieldResolver;
 use PoP\Content\FieldInterfaces\ContentEntityFieldInterfaceResolver;
+use PoP\Hooks\Facades\HooksAPIFacade;
+use PoP\LooseContracts\Facades\NameResolverFacade;
+use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 
-abstract class AbstractContentEntityFieldResolver extends AbstractContentEntryFieldResolver
+abstract class AbstractContentEntityFieldResolver extends AbstractDBDataFieldResolver
 {
     public static function getFieldNamesToResolve(): array
     {
@@ -20,12 +21,9 @@ abstract class AbstractContentEntityFieldResolver extends AbstractContentEntryFi
 
     public static function getImplementedInterfaceClasses(): array
     {
-        return array_merge(
-            parent::getImplementedInterfaceClasses(),
-            [
-                ContentEntityFieldInterfaceResolver::class,
-            ]
-        );
+        return [
+            ContentEntityFieldInterfaceResolver::class,
+        ];
     }
 
     protected function getContentEntityTypeAPI(): ContentEntityTypeAPIInterface
@@ -34,15 +32,38 @@ abstract class AbstractContentEntityFieldResolver extends AbstractContentEntryFi
         return $contentEntityTypeAPI;
     }
 
-    protected function getContentEntryTypeAPI(): ContentEntryTypeAPIInterface
-    {
-        return $this->getContentEntityTypeAPI();
-    }
-
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
+        $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
         $contentEntityTypeAPI = $this->getContentEntityTypeAPI();
         switch ($fieldName) {
+            case 'content':
+                $value = $contentEntityTypeAPI->getContent($resultItem);
+                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getID($resultItem));
+
+            case 'url':
+                return $contentEntityTypeAPI->getPermalink($resultItem);
+
+            case 'status':
+                return $contentEntityTypeAPI->getStatus($resultItem);
+
+            case 'isStatus':
+                return $fieldArgs['status'] == $contentEntityTypeAPI->getStatus($resultItem);
+
+            case 'date':
+                $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));
+                return $cmsengineapi->getDate($format, $contentEntityTypeAPI->getPublishedDate($resultItem));
+
+            case 'datetime':
+                // If it is the current year, don't add the year. Otherwise, do
+                // 15 Jul, 21:47 or // 15 Jul 2018, 21:47
+                $date = $contentEntityTypeAPI->getPublishedDate($resultItem);
+                $format = $fieldArgs['format'];
+                if (!$format) {
+                    $format = ($cmsengineapi->getDate('Y', $date) == date('Y')) ? 'j M, H:i' : 'j M Y, H:i';
+                }
+                return $cmsengineapi->getDate($format, $date);
+
             case 'title':
                 return $contentEntityTypeAPI->getTitle($resultItem);
 
