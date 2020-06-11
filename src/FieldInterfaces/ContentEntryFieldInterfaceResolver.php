@@ -9,7 +9,7 @@ use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
-use PoP\ComponentModel\FieldResolvers\AbstractSchemaFieldInterfaceResolver;
+use PoP\ComponentModel\FieldInterfaceResolvers\AbstractSchemaFieldInterfaceResolver;
 use PoP\Content\Types\Status;
 
 class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
