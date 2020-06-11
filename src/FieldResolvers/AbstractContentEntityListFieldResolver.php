@@ -35,6 +35,16 @@ abstract class AbstractContentEntityListFieldResolver extends AbstractQueryableF
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
 
+    public function isSchemaFieldResponseNonNullable(TypeResolverInterface $typeResolver, string $fieldName): bool
+    {
+        switch ($fieldName) {
+            case 'contentEntities':
+            case 'contentEntityCount':
+                return true;
+        }
+        return parent::isSchemaFieldResponseNonNullable($typeResolver, $fieldName);
+    }
+
     public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();

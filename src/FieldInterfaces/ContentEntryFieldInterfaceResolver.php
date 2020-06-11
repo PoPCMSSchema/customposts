@@ -60,6 +60,23 @@ class ContentEntryFieldInterfaceResolver extends AbstractSchemaFieldInterfaceRes
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
 
+    public function isSchemaFieldResponseNonNullable(TypeResolverInterface $typeResolver, string $fieldName): bool
+    {
+        /**
+         * Please notice that the URL, title and excerpt are nullable,
+         * and content is not!
+         */
+        switch ($fieldName) {
+            case 'content':
+            case 'status':
+            case 'isStatus':
+            case 'date':
+            case 'datetime':
+                return true;
+        }
+        return parent::isSchemaFieldResponseNonNullable($typeResolver, $fieldName);
+    }
+
     public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
