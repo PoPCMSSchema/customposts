@@ -1,12 +1,12 @@
 {
-    "name": "getpop/custom-posts",
+    "name": "getpop/customposts",
     "type": "library",
-    "description": "Interfaces and helpers for custom-posts (eg: posts, articles, etc)",
+    "description": "Interfaces and helpers for custom posts (eg: posts, articles, etc)",
     "keywords": [
         "PoP",
-        "custom-posts"
+        "customposts"
     ],
-    "homepage": "https://github.com/PoPSchema/custom-posts",
+    "homepage": "https://github.com/PoPSchema/customposts",
     "license": "MIT",
     "authors": [
         {

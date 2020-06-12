@@ -17,7 +17,7 @@ Interfaces and helpers for custom posts (eg: posts, articles, etc)
 Via Composer
 
 ``` bash
-composer require getpop/custom-posts
+composer require getpop/customposts
 ```
 
 ## Usage
@@ -75,17 +75,17 @@ If you discover any security related issues, please email leo@getpop.org instead
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/getpop/custom-posts.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/getpop/customposts.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/getpop/custom-posts/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/getpop/custom-posts.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/getpop/custom-posts.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/getpop/custom-posts.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/getpop/customposts/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/getpop/customposts.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/getpop/customposts.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/getpop/customposts.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/getpop/custom-posts
-[link-travis]: https://travis-ci.org/getpop/custom-posts
-[link-scrutinizer]: https://scrutinizer-ci.com/g/getpop/custom-posts/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/getpop/custom-posts
-[link-downloads]: https://packagist.org/packages/getpop/custom-posts
+[link-packagist]: https://packagist.org/packages/getpop/customposts
+[link-travis]: https://travis-ci.org/getpop/customposts
+[link-scrutinizer]: https://scrutinizer-ci.com/g/getpop/customposts/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/getpop/customposts
+[link-downloads]: https://packagist.org/packages/getpop/customposts
 [link-author]: https://github.com/leoloso
 [link-contributors]: ../../contributors
