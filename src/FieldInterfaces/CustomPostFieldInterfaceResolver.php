@@ -86,15 +86,15 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
-            'content' => $translationAPI->__('Post content', 'content'),
-            'url' => $translationAPI->__('Post URL', 'content'),
-            'postType' => $translationAPI->__('Post type', 'content'),
-            'status' => $translationAPI->__('Post status', 'content'),
-            'isStatus' => $translationAPI->__('Is the post in the given status?', 'content'),
-            'date' => $translationAPI->__('Post published date', 'content'),
-            'datetime' => $translationAPI->__('Post published date and time', 'content'),
-            'title' => $translationAPI->__('Post title', 'content'),
-            'excerpt' => $translationAPI->__('Post excerpt', 'content'),
+            'content' => $translationAPI->__('Custom post content', 'customposts'),
+            'url' => $translationAPI->__('Custom post URL', 'customposts'),
+            'postType' => $translationAPI->__('Custom post type', 'customposts'),
+            'status' => $translationAPI->__('Custom post status', 'customposts'),
+            'isStatus' => $translationAPI->__('Is the custom post in the given status?', 'customposts'),
+            'date' => $translationAPI->__('Custom post published date', 'customposts'),
+            'datetime' => $translationAPI->__('Custom post published date and time', 'customposts'),
+            'title' => $translationAPI->__('Custom post title', 'customposts'),
+            'excerpt' => $translationAPI->__('Custom post excerpt', 'customposts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
