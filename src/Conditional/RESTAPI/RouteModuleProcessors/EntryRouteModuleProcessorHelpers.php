@@ -9,6 +9,7 @@ use PoP\API\Facades\FieldQueryConvertorFacade;
 
 class EntryRouteModuleProcessorHelpers
 {
+    public const HOOK_REST_FIELDS = __CLASS__ . ':RESTFields';
     private static $restFieldsQuery;
     private static $restFields;
 
@@ -27,7 +28,7 @@ class EntryRouteModuleProcessorHelpers
     {
         if (is_null(self::$restFieldsQuery)) {
             self::$restFieldsQuery = (string) HooksAPIFacade::getInstance()->applyFilters(
-                'Posts:RESTFields',
+                self::HOOK_REST_FIELDS,
                 'id|title|date|url|content'
             );
         }
