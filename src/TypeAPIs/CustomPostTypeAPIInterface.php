@@ -21,7 +21,6 @@ interface CustomPostTypeAPIInterface
     public function getStatus($objectOrID): ?string;
     public function getPublishedDate($objectOrID): ?string;
     public function getModifiedDate($objectOrID): ?string;
-    // public function getAuthorID($objectOrID);
     public function getTitle($id): ?string;
     public function getExcerpt($objectOrID): ?string;
 }
