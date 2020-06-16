@@ -8,7 +8,7 @@ use PoP\CustomPosts\ComponentConfiguration;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\TypeCastingHelpers;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\CustomPosts\Facades\CustomPostTypeListAPIFacade;
+use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
@@ -115,7 +115,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
 
     public function resolveValue(TypeResolverInterface $typeResolver, $resultItem, string $fieldName, array $fieldArgs = [], ?array $variables = null, ?array $expressions = null, array $options = [])
     {
-        $contentTypeListAPI = CustomPostTypeListAPIFacade::getInstance();
+        $customPostTypeAPI = CustomPostTypeAPIFacade::getInstance();
         switch ($fieldName) {
             case 'customPosts':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
@@ -123,12 +123,12 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
                     'return-type' => POP_RETURNTYPE_IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $contentTypeListAPI->getCustomPosts($query, $options);
+                return $customPostTypeAPI->getCustomPosts($query, $options);
             case 'customPostCount':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
-                return $contentTypeListAPI->getCustomPostCount($query, $options);
+                return $customPostTypeAPI->getCustomPostCount($query, $options);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
