@@ -36,28 +36,29 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
     {
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
         $customPostTypeAPI = $this->getCustomPostTypeAPI();
+        $customPost = $resultItem;
         switch ($fieldName) {
             case 'content':
-                $value = $customPostTypeAPI->getContent($resultItem);
-                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getID($resultItem));
+                $value = $customPostTypeAPI->getContent($customPost);
+                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getID($customPost));
 
             case 'url':
-                return $customPostTypeAPI->getPermalink($resultItem);
+                return $customPostTypeAPI->getPermalink($customPost);
 
             case 'status':
-                return $customPostTypeAPI->getStatus($resultItem);
+                return $customPostTypeAPI->getStatus($customPost);
 
             case 'isStatus':
-                return $fieldArgs['status'] == $customPostTypeAPI->getStatus($resultItem);
+                return $fieldArgs['status'] == $customPostTypeAPI->getStatus($customPost);
 
             case 'date':
                 $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));
-                return $cmsengineapi->getDate($format, $customPostTypeAPI->getPublishedDate($resultItem));
+                return $cmsengineapi->getDate($format, $customPostTypeAPI->getPublishedDate($customPost));
 
             case 'datetime':
                 // If it is the current year, don't add the year. Otherwise, do
                 // 15 Jul, 21:47 or // 15 Jul 2018, 21:47
-                $date = $customPostTypeAPI->getPublishedDate($resultItem);
+                $date = $customPostTypeAPI->getPublishedDate($customPost);
                 $format = $fieldArgs['format'];
                 if (!$format) {
                     $format = ($cmsengineapi->getDate('Y', $date) == date('Y')) ? 'j M, H:i' : 'j M Y, H:i';
@@ -65,10 +66,10 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
                 return $cmsengineapi->getDate($format, $date);
 
             case 'title':
-                return $customPostTypeAPI->getTitle($resultItem);
+                return $customPostTypeAPI->getTitle($customPost);
 
             case 'excerpt':
-                return $customPostTypeAPI->getExcerpt($resultItem);
+                return $customPostTypeAPI->getExcerpt($customPost);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);
