@@ -70,6 +70,9 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
 
             case 'excerpt':
                 return $customPostTypeAPI->getExcerpt($customPost);
+
+            case 'postType':
+                return $customPostTypeAPI->getCustomPostType($customPost);
         }
 
         return parent::resolveValue($typeResolver, $resultItem, $fieldName, $fieldArgs, $variables, $expressions, $options);

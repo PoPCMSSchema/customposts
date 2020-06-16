@@ -23,4 +23,5 @@ interface CustomPostTypeAPIInterface
     public function getModifiedDate($objectOrID): ?string;
     public function getTitle($id): ?string;
     public function getExcerpt($objectOrID): ?string;
+    public function getCustomPostType($objectOrID): string;
 }
