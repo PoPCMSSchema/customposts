@@ -33,7 +33,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
     public function getSchemaInterfaceDescription(): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
-        return $translationAPI->__('Entities representing publishable \'content\', with a title', 'content');
+        return $translationAPI->__('Entities representing a custom post', 'customposts');
     }
 
     public static function getFieldNamesToImplement(): array
@@ -47,6 +47,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
             'datetime',
             'title',
             'excerpt',
+            'customPostType',
         ];
     }
 
@@ -61,6 +62,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
             'datetime' => SchemaDefinition::TYPE_DATE,
             'title' => SchemaDefinition::TYPE_STRING,
             'excerpt' => SchemaDefinition::TYPE_STRING,
+            'customPostType' => SchemaDefinition::TYPE_STRING,
         ];
         return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
     }
@@ -77,6 +79,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
             case 'isStatus':
             case 'date':
             case 'datetime':
+            case 'customPostType':
                 return true;
         }
         return parent::isSchemaFieldResponseNonNullable($typeResolver, $fieldName);
@@ -88,13 +91,13 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         $descriptions = [
             'content' => $translationAPI->__('Custom post content', 'customposts'),
             'url' => $translationAPI->__('Custom post URL', 'customposts'),
-            'postType' => $translationAPI->__('Custom post type', 'customposts'),
             'status' => $translationAPI->__('Custom post status', 'customposts'),
             'isStatus' => $translationAPI->__('Is the custom post in the given status?', 'customposts'),
             'date' => $translationAPI->__('Custom post published date', 'customposts'),
             'datetime' => $translationAPI->__('Custom post published date and time', 'customposts'),
             'title' => $translationAPI->__('Custom post title', 'customposts'),
             'excerpt' => $translationAPI->__('Custom post excerpt', 'customposts'),
+            'customPostType' => $translationAPI->__('Custom post type', 'customposts'),
         ];
         return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
     }
