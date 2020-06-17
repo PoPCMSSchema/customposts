@@ -16,6 +16,7 @@ interface CustomPostTypeInterface
     public function getContent($id): ?string;
     public function getPlainTextContent($objectOrID): string;
     public function getPermalink($objectOrID): ?string;
+    public function getSlug($postObjectOrID): ?string;
     public function getStatus($objectOrID): ?string;
     public function getPublishedDate($objectOrID): ?string;
     public function getModifiedDate($objectOrID): ?string;

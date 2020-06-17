@@ -41,6 +41,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         return [
             'content',
             'url',
+            'slug',
             'status',
             'isStatus',
             'date',
@@ -56,6 +57,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         $types = [
             'content' => SchemaDefinition::TYPE_STRING,
             'url' => SchemaDefinition::TYPE_URL,
+            'slug' => SchemaDefinition::TYPE_STRING,
             'status' => SchemaDefinition::TYPE_ENUM,
             'isStatus' => SchemaDefinition::TYPE_BOOL,
             'date' => SchemaDefinition::TYPE_DATE,
@@ -70,7 +72,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
     public function isSchemaFieldResponseNonNullable(TypeResolverInterface $typeResolver, string $fieldName): bool
     {
         /**
-         * Please notice that the URL, title and excerpt are nullable,
+         * Please notice that the URL, slug, title and excerpt are nullable,
          * and content is not!
          */
         switch ($fieldName) {
@@ -91,6 +93,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         $descriptions = [
             'content' => $translationAPI->__('Custom post content', 'customposts'),
             'url' => $translationAPI->__('Custom post URL', 'customposts'),
+            'slug' => $translationAPI->__('Custom post slug', 'customposts'),
             'status' => $translationAPI->__('Custom post status', 'customposts'),
             'isStatus' => $translationAPI->__('Is the custom post in the given status?', 'customposts'),
             'date' => $translationAPI->__('Custom post published date', 'customposts'),
