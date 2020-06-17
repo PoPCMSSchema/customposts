@@ -4,19 +4,20 @@ declare(strict_types=1);
 
 namespace PoP\CustomPosts\TypeDataLoaders;
 
+use PoP\CustomPosts\Types\Status;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
-use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
 use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
-use PoP\CustomPosts\Types\Status;
+use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
+use PoP\CustomPosts\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
 
 class CustomPostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
     public function getFilterDataloadingModule(): ?array
     {
         return [
-            \PoP_Posts_Module_Processor_FieldDataloads::class,
-            \PoP_Posts_Module_Processor_FieldDataloads::MODULE_DATALOAD_RELATIONALFIELDS_POSTLIST
+            ContentRelationalFieldDataloadModuleProcessor::class,
+            ContentRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST
         ];
     }
 
@@ -80,7 +81,7 @@ class CustomPostTypeDataLoader extends AbstractTypeQueryableDataLoader
     protected function getLimitParam($query_args)
     {
         return HooksAPIFacade::getInstance()->applyFilters(
-            'PostTypeDataLoader:query:limit',
+            'CustomPostTypeDataLoader:query:limit',
             parent::getLimitParam($query_args)
         );
     }
@@ -88,6 +89,6 @@ class CustomPostTypeDataLoader extends AbstractTypeQueryableDataLoader
     protected function getQueryHookName()
     {
         // Allow to add the timestamp for loadingLatest
-        return 'PostTypeDataLoader:query';
+        return 'CustomPostTypeDataLoader:query';
     }
 }

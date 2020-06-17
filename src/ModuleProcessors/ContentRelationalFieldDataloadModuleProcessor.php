@@ -13,23 +13,23 @@ class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFi
 {
     use QueriedDBObjectModuleProcessorTrait;
 
-    public const MODULE_DATALOAD_RELATIONALFIELDS_SINGLECONTENT = 'dataload-relationalfields-singlecontent';
-    public const MODULE_DATALOAD_RELATIONALFIELDS_CONTENTLIST = 'dataload-relationalfields-contentlist';
-    public const MODULE_DATALOAD_RELATIONALFIELDS_CONTENTCOUNT = 'dataload-relationalfields-contentcount';
+    public const MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST = 'dataload-relationalfields-singlecustompost';
+    public const MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST = 'dataload-relationalfields-custompostlist';
+    public const MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT = 'dataload-relationalfields-custompostcount';
 
     public function getModulesToProcess(): array
     {
         return array(
-            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECONTENT],
-            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTLIST],
-            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTCOUNT],
+            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST],
+            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST],
+            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT],
         );
     }
 
     public function getDBObjectIDOrIDs(array $module, array &$props, &$data_properties)
     {
         switch ($module[1]) {
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECONTENT:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST:
                 return $this->getQueriedDBObjectID($module, $props, $data_properties);
         }
 
@@ -39,8 +39,8 @@ class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFi
     public function getTypeResolverClass(array $module): ?string
     {
         switch ($module[1]) {
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECONTENT:
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTLIST:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
                 return CustomPostUnionTypeResolver::class;
         }
 
@@ -50,7 +50,7 @@ class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFi
     public function getQueryInputOutputHandlerClass(array $module): ?string
     {
         switch ($module[1]) {
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTLIST:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
                 return ListQueryInputOutputHandler::class;
         }
 
@@ -60,15 +60,15 @@ class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFi
     public function getFilterSubmodule(array $module): ?array
     {
         switch ($module[1]) {
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTLIST:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
                 return [
                     ContentFilterInnerModuleProcessor::class,
-                    ContentFilterInnerModuleProcessor::MODULE_FILTERINNER_CONTENTS
+                    ContentFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTS
                 ];
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_CONTENTCOUNT:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT:
                 return [
                     ContentFilterInnerModuleProcessor::class,
-                    ContentFilterInnerModuleProcessor::MODULE_FILTERINNER_CONTENTCOUNT
+                    ContentFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTCOUNT
                 ];
         }
 

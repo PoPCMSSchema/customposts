@@ -9,14 +9,14 @@ use PoP\ComponentModel\ModuleProcessors\AbstractModuleProcessor;
 
 class ContentFilterInnerModuleProcessor extends AbstractModuleProcessor
 {
-    public const MODULE_FILTERINNER_CONTENTS = 'filterinner-contents';
-    public const MODULE_FILTERINNER_CONTENTCOUNT = 'filterinner-contentcount';
+    public const MODULE_FILTERINNER_CUSTOMPOSTS = 'filterinner-customposts';
+    public const MODULE_FILTERINNER_CUSTOMPOSTCOUNT = 'filterinner-custompostcount';
 
     public function getModulesToProcess(): array
     {
         return array(
-            [self::class, self::MODULE_FILTERINNER_CONTENTS],
-            [self::class, self::MODULE_FILTERINNER_CONTENTCOUNT],
+            [self::class, self::MODULE_FILTERINNER_CUSTOMPOSTS],
+            [self::class, self::MODULE_FILTERINNER_CUSTOMPOSTCOUNT],
         );
     }
 
@@ -25,7 +25,7 @@ class ContentFilterInnerModuleProcessor extends AbstractModuleProcessor
         $ret = parent::getSubmodules($module);
 
         $inputmodules = [
-            self::MODULE_FILTERINNER_CONTENTS => [
+            self::MODULE_FILTERINNER_CUSTOMPOSTS => [
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_SEARCH],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_ORDER],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_LIMIT],
@@ -35,7 +35,7 @@ class ContentFilterInnerModuleProcessor extends AbstractModuleProcessor
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_ID],
                 // [\PoP_Posts_Module_Processor_FilterInputs::class, \PoP_Posts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_POSTTYPES],
             ],
-            self::MODULE_FILTERINNER_CONTENTCOUNT => [
+            self::MODULE_FILTERINNER_CUSTOMPOSTCOUNT => [
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_SEARCH],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_DATES],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_IDS],
