@@ -6,5 +6,5 @@ namespace PoP\CustomPosts\Routing;
 
 class RouteNatures
 {
-    public const POST = 'post';
+    public const CUSTOMPOST = 'custompost';
 }
