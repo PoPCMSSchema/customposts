@@ -21,4 +21,5 @@ interface CustomPostTypeAPIInterface extends CustomPostTypeInterface
     public function getCustomPostType($objectOrID): string;
     public function getCustomPosts($query, array $options = []);
     public function getCustomPostCount(array $query = [], array $options = []): int;
+    public function getCustomPostTypes(array $query = array()): array;
 }
