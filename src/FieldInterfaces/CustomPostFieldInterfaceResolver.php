@@ -122,7 +122,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
                             SchemaDefinition::ARGNAME_NAME => 'format',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
                             SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                                $translationAPI->__('Date format, as defined in %s', 'content'),
+                                $translationAPI->__('Date format, as defined in %s', 'customposts'),
                                 'https://www.php.net/manual/en/function.date.php'
                             ),
                             SchemaDefinition::ARGNAME_DEFAULT_VALUE => $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat')),
@@ -138,7 +138,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
                             SchemaDefinition::ARGNAME_NAME => 'format',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_STRING,
                             SchemaDefinition::ARGNAME_DESCRIPTION => sprintf(
-                                $translationAPI->__('Date and time format, as defined in %s. Default value: \'%s\' (for current year date) or \'%s\' (otherwise)', 'content'),
+                                $translationAPI->__('Date and time format, as defined in %s. Default value: \'%s\' (for current year date) or \'%s\' (otherwise)', 'customposts'),
                                 'https://www.php.net/manual/en/function.date.php',
                                 'j M, H:i',
                                 'j M Y, H:i'
@@ -154,7 +154,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
                         [
                             SchemaDefinition::ARGNAME_NAME => 'status',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
-                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'content'),
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'customposts'),
                             SchemaDefinition::ARGNAME_ENUMVALUES => [
                                 Status::PUBLISHED => [
                                     SchemaDefinition::ARGNAME_NAME => Status::PUBLISHED,
@@ -170,10 +170,10 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
                                 ],
                                 'trashed' => [
                                     SchemaDefinition::ARGNAME_NAME => 'trashed',
-                                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'content'),
+                                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'customposts'),
                                     SchemaDefinition::ARGNAME_DEPRECATED => true,
                                     SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
-                                        $translationAPI->__('Use \'%s\' instead', 'content'),
+                                        $translationAPI->__('Use \'%s\' instead', 'customposts'),
                                         Status::TRASH
                                     ),
                                 ],
@@ -190,7 +190,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
                         [
                             SchemaDefinition::ARGNAME_NAME => 'format',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
-                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The format of the content', 'content'),
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The format of the content', 'customposts'),
                             SchemaDefinition::ARGNAME_ENUMVALUES => SchemaHelpers::convertToSchemaFieldArgEnumValueDefinitions(
                                 self::getContentFormatValues()
                             ),
@@ -232,7 +232,7 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
             case 'status':
                 return [
                     'trashed' => sprintf(
-                        $translationAPI->__('Using \'%s\' instead', 'content'),
+                        $translationAPI->__('Using \'%s\' instead', 'customposts'),
                         Status::TRASH
                     ),
                 ];
@@ -246,11 +246,11 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         switch ($fieldName) {
             case 'status':
                 return [
-                    Status::PUBLISHED => $translationAPI->__('Published content', 'content'),
-                    Status::PENDING => $translationAPI->__('Pending content', 'content'),
-                    Status::DRAFT => $translationAPI->__('Draft content', 'content'),
-                    Status::TRASH => $translationAPI->__('Trashed content', 'content'),
-                    'trashed' => $translationAPI->__('Trashed content', 'content'),
+                    Status::PUBLISHED => $translationAPI->__('Published content', 'customposts'),
+                    Status::PENDING => $translationAPI->__('Pending content', 'customposts'),
+                    Status::DRAFT => $translationAPI->__('Draft content', 'customposts'),
+                    Status::TRASH => $translationAPI->__('Trashed content', 'customposts'),
+                    'trashed' => $translationAPI->__('Trashed content', 'customposts'),
                 ];
         }
         return null;

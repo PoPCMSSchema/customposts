@@ -7,7 +7,7 @@ namespace PoP\CustomPosts\ModuleProcessors;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\ComponentModel\ModuleProcessors\AbstractModuleProcessor;
 
-class ContentFilterInnerModuleProcessor extends AbstractModuleProcessor
+class CustomPostFilterInnerModuleProcessor extends AbstractModuleProcessor
 {
     public const MODULE_FILTERINNER_CUSTOMPOSTS = 'filterinner-customposts';
     public const MODULE_FILTERINNER_CUSTOMPOSTCOUNT = 'filterinner-custompostcount';
@@ -44,7 +44,7 @@ class ContentFilterInnerModuleProcessor extends AbstractModuleProcessor
             ],
         ];
         if ($modules = HooksAPIFacade::getInstance()->applyFilters(
-            'Content:FilterInners:inputmodules',
+            'CustomPosts:FilterInners:inputmodules',
             $inputmodules[$module[1]],
             $module
         )) {

@@ -21,7 +21,7 @@ class CustomPostUnionTypeResolver extends AbstractUnionTypeResolver
     public function getSchemaTypeDescription(): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
-        return $translationAPI->__('Union of \'custom post\' type resolvers', 'content');
+        return $translationAPI->__('Union of \'custom post\' type resolvers', 'customposts');
     }
 
     public function getTypeDataLoaderClass(): string

@@ -9,7 +9,7 @@ use PoP\QueriedObject\ModuleProcessors\QueriedDBObjectModuleProcessorTrait;
 use PoP\API\ModuleProcessors\AbstractRelationalFieldDataloadModuleProcessor;
 use PoP\ComponentModel\QueryInputOutputHandlers\ListQueryInputOutputHandler;
 
-class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFieldDataloadModuleProcessor
+class CustomPostRelationalFieldDataloadModuleProcessor extends AbstractRelationalFieldDataloadModuleProcessor
 {
     use QueriedDBObjectModuleProcessorTrait;
 
@@ -62,13 +62,13 @@ class ContentRelationalFieldDataloadModuleProcessor extends AbstractRelationalFi
         switch ($module[1]) {
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
                 return [
-                    ContentFilterInnerModuleProcessor::class,
-                    ContentFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTS
+                    CustomPostFilterInnerModuleProcessor::class,
+                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTS
                 ];
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT:
                 return [
-                    ContentFilterInnerModuleProcessor::class,
-                    ContentFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTCOUNT
+                    CustomPostFilterInnerModuleProcessor::class,
+                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTCOUNT
                 ];
         }
 

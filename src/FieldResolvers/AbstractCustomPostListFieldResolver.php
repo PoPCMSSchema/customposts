@@ -13,7 +13,7 @@ use PoP\ComponentModel\TypeResolvers\UnionTypeHelpers;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
-use PoP\CustomPosts\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
+use PoP\CustomPosts\ModuleProcessors\CustomPostRelationalFieldDataloadModuleProcessor;
 use PoP\CustomPosts\Types\Status;
 
 abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFieldResolver
@@ -84,8 +84,8 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
         switch ($fieldName) {
             case 'customPostCount':
                 return [
-                    ContentRelationalFieldDataloadModuleProcessor::class,
-                    ContentRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT
+                    CustomPostRelationalFieldDataloadModuleProcessor::class,
+                    CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT
                 ];
         }
         return parent::getFieldDefaultFilterDataloadingModule($typeResolver, $fieldName, $fieldArgs);

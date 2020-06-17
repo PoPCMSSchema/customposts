@@ -9,15 +9,15 @@ use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
-use PoP\CustomPosts\ModuleProcessors\ContentRelationalFieldDataloadModuleProcessor;
+use PoP\CustomPosts\ModuleProcessors\CustomPostRelationalFieldDataloadModuleProcessor;
 
 class CustomPostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
     public function getFilterDataloadingModule(): ?array
     {
         return [
-            ContentRelationalFieldDataloadModuleProcessor::class,
-            ContentRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST
+            CustomPostRelationalFieldDataloadModuleProcessor::class,
+            CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST
         ];
     }
 
