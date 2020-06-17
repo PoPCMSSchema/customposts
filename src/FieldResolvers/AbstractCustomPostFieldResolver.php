@@ -39,8 +39,21 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
         $customPost = $resultItem;
         switch ($fieldName) {
             case 'content':
-                $value = $customPostTypeAPI->getContent($customPost);
-                return HooksAPIFacade::getInstance()->applyFilters('pop_content', $value, $typeResolver->getID($customPost));
+                $format = $fieldArgs['format'];
+                if (!in_array($format, CustomPostFieldInterfaceResolver::getContentFormatValues())) {
+                    $format = CustomPostFieldInterfaceResolver::getDefaultContentFormatValue();
+                }
+                $value = '';
+                if ($format == CustomPostFieldInterfaceResolver::ENUM_VALUE_CONTENT_HTML) {
+                    $value = $customPostTypeAPI->getContent($customPost);
+                } elseif ($format == CustomPostFieldInterfaceResolver::ENUM_VALUE_CONTENT_PLAIN_TEXT) {
+                    $value = $customPostTypeAPI->getPlainTextContent($customPost);
+                }
+                return HooksAPIFacade::getInstance()->applyFilters(
+                    'pop_content',
+                    $value,
+                    $typeResolver->getID($customPost)
+                );
 
             case 'url':
                 return $customPostTypeAPI->getPermalink($customPost);

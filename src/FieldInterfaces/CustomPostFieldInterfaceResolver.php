@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace PoP\CustomPosts\FieldInterfaces;
 
+use PoP\CustomPosts\Types\Status;
+use PoP\ComponentModel\Schema\SchemaHelpers;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\ComponentModel\FieldInterfaceResolvers\AbstractSchemaFieldInterfaceResolver;
 use PoP\LooseContracts\Facades\NameResolverFacade;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
-use PoP\CustomPosts\Types\Status;
+use PoP\ComponentModel\FieldInterfaceResolvers\AbstractSchemaFieldInterfaceResolver;
 
 class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
 {
@@ -24,6 +25,9 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         Status::TRASH,
         'trashed',
     ];
+
+    public const ENUM_VALUE_CONTENT_HTML = 'html';
+    public const ENUM_VALUE_CONTENT_PLAIN_TEXT = 'plain_text';
 
     public function getInterfaceName(): string
     {
@@ -178,9 +182,38 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
                         ],
                     ]
                 );
+
+            case 'content':
+                return array_merge(
+                    $schemaFieldArgs,
+                    [
+                        [
+                            SchemaDefinition::ARGNAME_NAME => 'format',
+                            SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
+                            SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The format of the content', 'content'),
+                            SchemaDefinition::ARGNAME_ENUMVALUES => SchemaHelpers::convertToSchemaFieldArgEnumValueDefinitions(
+                                self::getContentFormatValues()
+                            ),
+                            SchemaDefinition::ARGNAME_DEFAULT_VALUE => self::getDefaultContentFormatValue(),
+                        ],
+                    ]
+                );
         }
 
         return $schemaFieldArgs;
+    }
+
+    public static function getContentFormatValues(): array
+    {
+        return [
+            self::ENUM_VALUE_CONTENT_HTML,
+            self::ENUM_VALUE_CONTENT_PLAIN_TEXT,
+        ];
+    }
+
+    public static function getDefaultContentFormatValue(): string
+    {
+        return self::ENUM_VALUE_CONTENT_HTML;
     }
 
     protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
