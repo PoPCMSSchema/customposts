@@ -45,7 +45,7 @@ abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDat
     {
         $query = array();
         $query['include'] = $ids;
-        $query['post-status'] = [
+        $query['custom-post-status'] = [
             Status::PUBLISHED,
             Status::DRAFT,
             Status::PENDING,
