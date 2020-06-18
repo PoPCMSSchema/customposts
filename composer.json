@@ -19,7 +19,7 @@
     "prefer-stable": true,
     "require": {
         "php" : "~7.1",
-        "getpop/engine": "dev-master",
+        "getpop/queriedobject": "dev-master",
         "getpop/migrate-customposts": "dev-master"
     },
     "require-dev": {
