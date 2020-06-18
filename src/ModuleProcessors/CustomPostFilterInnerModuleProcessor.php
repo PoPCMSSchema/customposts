@@ -33,14 +33,14 @@ class CustomPostFilterInnerModuleProcessor extends AbstractModuleProcessor
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_DATES],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_IDS],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_ID],
-                // [\PoP_Posts_Module_Processor_FilterInputs::class, \PoP_Posts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_POSTTYPES],
+                // [\PoP_CustomPosts_Module_Processor_FilterInputs::class, \PoP_CustomPosts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_POSTTYPES],
             ],
             self::MODULE_FILTERINNER_CUSTOMPOSTCOUNT => [
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_SEARCH],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_DATES],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_IDS],
                 [\PoP_Module_Processor_FilterInputs::class, \PoP_Module_Processor_FilterInputs::MODULE_FILTERINPUT_ID],
-                // [\PoP_Posts_Module_Processor_FilterInputs::class, \PoP_Posts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_POSTTYPES],
+                // [\PoP_CustomPosts_Module_Processor_FilterInputs::class, \PoP_CustomPosts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_POSTTYPES],
             ],
         ];
         if ($modules = HooksAPIFacade::getInstance()->applyFilters(
