@@ -11,9 +11,9 @@ use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
-use PoP\ComponentModel\FieldInterfaceResolvers\AbstractSchemaFieldInterfaceResolver;
+use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
 
-class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResolver
+class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceResolver
 {
     use EnumTypeSchemaDefinitionResolverTrait;
 
@@ -34,6 +34,13 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         return self::NAME;
     }
 
+    public static function getImplementedInterfaceClasses(): array
+    {
+        return [
+            QueryableObjectFieldInterfaceResolver::class,
+        ];
+    }
+
     public function getSchemaInterfaceDescription(): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
@@ -42,26 +49,25 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
 
     public static function getFieldNamesToImplement(): array
     {
-        return [
-            'content',
-            'url',
-            'slug',
-            'status',
-            'isStatus',
-            'date',
-            'datetime',
-            'title',
-            'excerpt',
-            'customPostType',
-        ];
+        return array_merge(
+            parent::getFieldNamesToImplement(),
+            [
+                'content',
+                'status',
+                'isStatus',
+                'date',
+                'datetime',
+                'title',
+                'excerpt',
+                'customPostType',
+            ]
+        );
     }
 
     public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
     {
         $types = [
             'content' => SchemaDefinition::TYPE_STRING,
-            'url' => SchemaDefinition::TYPE_URL,
-            'slug' => SchemaDefinition::TYPE_STRING,
             'status' => SchemaDefinition::TYPE_ENUM,
             'isStatus' => SchemaDefinition::TYPE_BOOL,
             'date' => SchemaDefinition::TYPE_DATE,
@@ -96,8 +102,6 @@ class CustomPostFieldInterfaceResolver extends AbstractSchemaFieldInterfaceResol
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
             'content' => $translationAPI->__('Custom post content', 'customposts'),
-            'url' => $translationAPI->__('Custom post URL', 'customposts'),
-            'slug' => $translationAPI->__('Custom post slug', 'customposts'),
             'status' => $translationAPI->__('Custom post status', 'customposts'),
             'isStatus' => $translationAPI->__('Is the custom post in the given status?', 'customposts'),
             'date' => $translationAPI->__('Custom post published date', 'customposts'),

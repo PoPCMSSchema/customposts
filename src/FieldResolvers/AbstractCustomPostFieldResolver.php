@@ -11,6 +11,7 @@ use PoP\CustomPosts\FieldInterfaces\CustomPostFieldInterfaceResolver;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
+use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
 
 abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -22,6 +23,7 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
     public static function getImplementedInterfaceClasses(): array
     {
         return [
+            QueryableObjectFieldInterfaceResolver::class,
             CustomPostFieldInterfaceResolver::class,
         ];
     }
