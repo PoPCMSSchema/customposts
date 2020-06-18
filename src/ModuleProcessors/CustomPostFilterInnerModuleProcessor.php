@@ -56,7 +56,10 @@ class CustomPostFilterInnerModuleProcessor extends AbstractModuleProcessor
             self::MODULE_FILTERINNER_CUSTOMPOSTLIST,
             self::MODULE_FILTERINNER_CUSTOMPOSTCOUNT,
         ])) {
-            $inputmodules[] = [\PoP_CustomPosts_Module_Processor_FilterInputs::class, \PoP_CustomPosts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_POSTTYPES];
+            $inputmodules[] = [
+                \PoP_CustomPosts_Module_Processor_FilterInputs::class,
+                \PoP_CustomPosts_Module_Processor_FilterInputs::MODULE_FILTERINPUT_UNIONCUSTOMPOSTTYPES
+            ];
         }
         if ($modules = HooksAPIFacade::getInstance()->applyFilters(
             'CustomPosts:FilterInners:inputmodules',
