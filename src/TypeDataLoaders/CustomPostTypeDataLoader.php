@@ -13,7 +13,7 @@ class CustomPostTypeDataLoader extends AbstractCustomPostTypeDataLoader
     {
         return [
             CustomPostRelationalFieldDataloadModuleProcessor::class,
-            CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST
+            CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTLIST
         ];
     }
 }

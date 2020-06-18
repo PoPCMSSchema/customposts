@@ -17,7 +17,7 @@ abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDat
     {
         return [
             CustomPostRelationalFieldDataloadModuleProcessor::class,
-            CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTLIST
+            CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST
         ];
     }
 

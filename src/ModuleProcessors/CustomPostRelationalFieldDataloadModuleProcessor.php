@@ -14,19 +14,19 @@ class CustomPostRelationalFieldDataloadModuleProcessor extends AbstractRelationa
     use QueriedDBObjectModuleProcessorTrait;
 
     public const MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST = 'dataload-relationalfields-singlecustompost';
+    public const MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTLIST = 'dataload-relationalfields-unioncustompostlist';
+    public const MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTCOUNT = 'dataload-relationalfields-unioncustompostcount';
     public const MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST = 'dataload-relationalfields-custompostlist';
     public const MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT = 'dataload-relationalfields-custompostcount';
-    public const MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTLIST = 'dataload-relationalfields-implementingcustompostlist';
-    public const MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTCOUNT = 'dataload-relationalfields-implementingcustompostcount';
 
     public function getModulesToProcess(): array
     {
         return array(
             [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST],
+            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTLIST],
+            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTCOUNT],
             [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST],
             [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT],
-            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTLIST],
-            [self::class, self::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTCOUNT],
         );
     }
 
@@ -44,8 +44,8 @@ class CustomPostRelationalFieldDataloadModuleProcessor extends AbstractRelationa
     {
         switch ($module[1]) {
             case self::MODULE_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST:
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTLIST:
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTLIST:
                 return CustomPostUnionTypeResolver::class;
         }
 
@@ -55,8 +55,8 @@ class CustomPostRelationalFieldDataloadModuleProcessor extends AbstractRelationa
     public function getQueryInputOutputHandlerClass(array $module): ?string
     {
         switch ($module[1]) {
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTLIST:
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTLIST:
                 return ListQueryInputOutputHandler::class;
         }
 
@@ -66,25 +66,25 @@ class CustomPostRelationalFieldDataloadModuleProcessor extends AbstractRelationa
     public function getFilterSubmodule(array $module): ?array
     {
         switch ($module[1]) {
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTLIST:
+                return [
+                    CustomPostFilterInnerModuleProcessor::class,
+                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_UNIONCUSTOMPOSTLIST
+                ];
+            case self::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTCOUNT:
+                return [
+                    CustomPostFilterInnerModuleProcessor::class,
+                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_UNIONCUSTOMPOSTCOUNT
+                ];
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTLIST:
                 return [
                     CustomPostFilterInnerModuleProcessor::class,
-                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTLIST
+                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTLISTLIST
                 ];
             case self::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT:
                 return [
                     CustomPostFilterInnerModuleProcessor::class,
-                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTCOUNT
-                ];
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTLIST:
-                return [
-                    CustomPostFilterInnerModuleProcessor::class,
-                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_IMPLEMENTINGCUSTOMPOSTLIST
-                ];
-            case self::MODULE_DATALOAD_RELATIONALFIELDS_IMPLEMENTINGCUSTOMPOSTCOUNT:
-                return [
-                    CustomPostFilterInnerModuleProcessor::class,
-                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_IMPLEMENTINGCUSTOMPOSTCOUNT
+                    CustomPostFilterInnerModuleProcessor::MODULE_FILTERINNER_CUSTOMPOSTLISTCOUNT
                 ];
         }
 

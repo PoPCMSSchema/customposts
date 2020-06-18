@@ -85,7 +85,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
             case 'customPostCount':
                 return [
                     CustomPostRelationalFieldDataloadModuleProcessor::class,
-                    CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_CUSTOMPOSTCOUNT
+                    CustomPostRelationalFieldDataloadModuleProcessor::MODULE_DATALOAD_RELATIONALFIELDS_UNIONCUSTOMPOSTCOUNT
                 ];
         }
         return parent::getFieldDefaultFilterDataloadingModule($typeResolver, $fieldName, $fieldArgs);
