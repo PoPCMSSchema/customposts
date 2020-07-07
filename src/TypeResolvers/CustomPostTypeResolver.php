@@ -11,6 +11,8 @@ use PoP\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
 /**
  * Class to be used only when a generic CustomPost type is good enough.
  * Otherwise, a specific type for the entity should be employed.
+ *
+ * @author Leonardo Losoviz <leo@getpop.org>
  */
 class CustomPostTypeResolver extends AbstractCustomPostTypeResolver
 {
