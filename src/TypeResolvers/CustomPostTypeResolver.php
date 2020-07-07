@@ -8,6 +8,10 @@ use PoP\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
 
+/**
+ * Class to be used only when a generic CustomPost type is good enough.
+ * Otherwise, a specific type for the entity should be employed.
+ */
 class CustomPostTypeResolver extends AbstractCustomPostTypeResolver
 {
     public const NAME = 'CustomPost';
