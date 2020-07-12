@@ -16,7 +16,7 @@ use PoP\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
  */
 class CustomPostTypeResolver extends AbstractCustomPostTypeResolver
 {
-    public const NAME = 'GenericCustomPost';
+    public const NAME = 'CustomPost';
 
     public function getTypeName(): string
     {

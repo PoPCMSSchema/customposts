@@ -17,7 +17,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
 {
     use EnumTypeSchemaDefinitionResolverTrait;
 
-    public const NAME = 'CustomPost';
+    public const NAME = 'IsCustomPost';
     public const STATUSES = [
         Status::PUBLISHED,
         Status::PENDING,
