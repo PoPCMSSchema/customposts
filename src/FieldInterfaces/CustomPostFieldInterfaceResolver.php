@@ -7,9 +7,12 @@ namespace PoP\CustomPosts\FieldInterfaces;
 use PoP\CustomPosts\Types\Status;
 use PoP\ComponentModel\Schema\SchemaHelpers;
 use PoP\ComponentModel\Schema\SchemaDefinition;
+use PoP\CustomPosts\Enums\CustomPostStatusEnum;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
+use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
 use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
 
@@ -18,16 +21,6 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
     use EnumTypeSchemaDefinitionResolverTrait;
 
     public const NAME = 'IsCustomPost';
-    public const STATUSES = [
-        Status::PUBLISHED,
-        Status::PENDING,
-        Status::DRAFT,
-        Status::TRASH,
-        'trashed',
-    ];
-
-    public const ENUM_VALUE_CONTENT_HTML = 'html';
-    public const ENUM_VALUE_CONTENT_PLAIN_TEXT = 'plain_text';
 
     public function getInterfaceName(): string
     {
@@ -117,6 +110,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
         $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
         $translationAPI = TranslationAPIFacade::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
+        $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'date':
                 return array_merge(
@@ -152,6 +146,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                 );
 
             case 'isStatus':
+                $customPostStatusEnum = $instanceManager->getInstance(CustomPostStatusEnum::class);
                 return array_merge(
                     $schemaFieldArgs,
                     [
@@ -159,6 +154,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                             SchemaDefinition::ARGNAME_NAME => 'status',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                             SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'customposts'),
+                            SchemaDefinition::ARGNAME_ENUMNAME => $customPostStatusEnum->getName(),
                             SchemaDefinition::ARGNAME_ENUMVALUES => [
                                 Status::PUBLISHED => [
                                     SchemaDefinition::ARGNAME_NAME => Status::PUBLISHED,
@@ -188,6 +184,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                 );
 
             case 'content':
+                $customPostContentFormatEnum = $instanceManager->getInstance(CustomPostContentFormatEnum::class);
                 return array_merge(
                     $schemaFieldArgs,
                     [
@@ -195,8 +192,9 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                             SchemaDefinition::ARGNAME_NAME => 'format',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                             SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The format of the content', 'customposts'),
+                            SchemaDefinition::ARGNAME_ENUMNAME => $customPostContentFormatEnum->getName(),
                             SchemaDefinition::ARGNAME_ENUMVALUES => SchemaHelpers::convertToSchemaFieldArgEnumValueDefinitions(
-                                self::getContentFormatValues()
+                                $customPostContentFormatEnum->getValues()
                             ),
                             SchemaDefinition::ARGNAME_DEFAULT_VALUE => self::getDefaultContentFormatValue(),
                         ],
@@ -207,24 +205,34 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
         return $schemaFieldArgs;
     }
 
-    public static function getContentFormatValues(): array
-    {
-        return [
-            self::ENUM_VALUE_CONTENT_HTML,
-            self::ENUM_VALUE_CONTENT_PLAIN_TEXT,
-        ];
-    }
-
     public static function getDefaultContentFormatValue(): string
     {
-        return self::ENUM_VALUE_CONTENT_HTML;
+        return CustomPostContentFormatEnum::VALUE_CONTENT_HTML;
+    }
+
+    protected function getSchemaDefinitionEnumName(TypeResolverInterface $typeResolver, string $fieldName): ?string
+    {
+        $instanceManager = InstanceManagerFacade::getInstance();
+        switch ($fieldName) {
+            case 'status':
+                $customPostStatusEnum = $instanceManager->getInstance(CustomPostStatusEnum::class);
+                return $customPostStatusEnum->getName();
+        }
+        return null;
     }
 
     protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
     {
+        $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'status':
-                return self::STATUSES;
+                $customPostStatusEnum = $instanceManager->getInstance(CustomPostStatusEnum::class);
+                return array_merge(
+                    $customPostStatusEnum->getValues(),
+                    [
+                        'trashed',
+                    ]
+                );
         }
         return null;
     }
