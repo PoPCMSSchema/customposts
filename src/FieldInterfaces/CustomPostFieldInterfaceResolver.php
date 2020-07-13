@@ -154,8 +154,8 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                             SchemaDefinition::ARGNAME_NAME => 'status',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                             SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The status to check if the post has', 'customposts'),
-                            SchemaDefinition::ARGNAME_ENUMNAME => $customPostStatusEnum->getName(),
-                            SchemaDefinition::ARGNAME_ENUMVALUES => [
+                            SchemaDefinition::ARGNAME_ENUM_NAME => $customPostStatusEnum->getName(),
+                            SchemaDefinition::ARGNAME_ENUM_VALUES => [
                                 Status::PUBLISHED => [
                                     SchemaDefinition::ARGNAME_NAME => Status::PUBLISHED,
                                 ],
@@ -192,8 +192,8 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                             SchemaDefinition::ARGNAME_NAME => 'format',
                             SchemaDefinition::ARGNAME_TYPE => SchemaDefinition::TYPE_ENUM,
                             SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('The format of the content', 'customposts'),
-                            SchemaDefinition::ARGNAME_ENUMNAME => $customPostContentFormatEnum->getName(),
-                            SchemaDefinition::ARGNAME_ENUMVALUES => SchemaHelpers::convertToSchemaFieldArgEnumValueDefinitions(
+                            SchemaDefinition::ARGNAME_ENUM_NAME => $customPostContentFormatEnum->getName(),
+                            SchemaDefinition::ARGNAME_ENUM_VALUES => SchemaHelpers::convertToSchemaFieldArgEnumValueDefinitions(
                                 $customPostContentFormatEnum->getValues()
                             ),
                             SchemaDefinition::ARGNAME_DEFAULT_VALUE => self::getDefaultContentFormatValue(),
