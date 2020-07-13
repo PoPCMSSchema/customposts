@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace PoP\CustomPosts\FieldResolvers;
 
-use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
-use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
-use PoP\CustomPosts\FieldInterfaces\CustomPostFieldInterfaceResolver;
 use PoP\Hooks\Facades\HooksAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
+use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
+use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
+use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
+use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
+use PoP\CustomPosts\FieldInterfaces\CustomPostFieldInterfaceResolver;
 use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
 
 abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolver
@@ -39,16 +41,18 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
         $customPostTypeAPI = $this->getCustomPostTypeAPI();
         $customPost = $resultItem;
+        $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'content':
+                $customPostContentFormatEnum = $instanceManager->getInstance(CustomPostContentFormatEnum::class);
                 $format = $fieldArgs['format'];
-                if (!in_array($format, CustomPostFieldInterfaceResolver::getContentFormatValues())) {
+                if (!in_array($format, $customPostContentFormatEnum->getValues())) {
                     $format = CustomPostFieldInterfaceResolver::getDefaultContentFormatValue();
                 }
                 $value = '';
-                if ($format == CustomPostFieldInterfaceResolver::ENUM_VALUE_CONTENT_HTML) {
+                if ($format == CustomPostContentFormatEnum::HTML) {
                     $value = $customPostTypeAPI->getContent($customPost);
-                } elseif ($format == CustomPostFieldInterfaceResolver::ENUM_VALUE_CONTENT_PLAIN_TEXT) {
+                } elseif ($format == CustomPostContentFormatEnum::PLAIN_TEXT) {
                     $value = $customPostTypeAPI->getPlainTextContent($customPost);
                 }
                 return HooksAPIFacade::getInstance()->applyFilters(
