@@ -207,7 +207,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
 
     public static function getDefaultContentFormatValue(): string
     {
-        return CustomPostContentFormatEnum::VALUE_CONTENT_HTML;
+        return CustomPostContentFormatEnum::HTML;
     }
 
     protected function getSchemaDefinitionEnumName(TypeResolverInterface $typeResolver, string $fieldName): ?string
