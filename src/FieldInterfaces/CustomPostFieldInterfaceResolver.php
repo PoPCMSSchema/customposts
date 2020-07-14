@@ -168,15 +168,18 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                                 Status::TRASH => [
                                     SchemaDefinition::ARGNAME_NAME => Status::TRASH,
                                 ],
-                                'trashed' => [
-                                    SchemaDefinition::ARGNAME_NAME => 'trashed',
-                                    SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'customposts'),
-                                    SchemaDefinition::ARGNAME_DEPRECATED => true,
-                                    SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
-                                        $translationAPI->__('Use \'%s\' instead', 'customposts'),
-                                        Status::TRASH
-                                    ),
-                                ],
+                                /**
+                                 * @todo Extract to documentation before deleting this code
+                                 */
+                                // 'trashed' => [
+                                //     SchemaDefinition::ARGNAME_NAME => 'trashed',
+                                //     SchemaDefinition::ARGNAME_DESCRIPTION => $translationAPI->__('Published content', 'customposts'),
+                                //     SchemaDefinition::ARGNAME_DEPRECATED => true,
+                                //     SchemaDefinition::ARGNAME_DEPRECATIONDESCRIPTION => sprintf(
+                                //         $translationAPI->__('Use \'%s\' instead', 'customposts'),
+                                //         Status::TRASH
+                                //     ),
+                                // ],
                             ],
                             SchemaDefinition::ARGNAME_MANDATORY => true,
                         ],
@@ -230,27 +233,33 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                 return array_merge(
                     $customPostStatusEnum->getValues(),
                     [
-                        'trashed',
+                        /**
+                         * @todo Extract to documentation before deleting this code
+                         */
+                        // 'trashed',
                     ]
                 );
         }
         return null;
     }
 
-    protected function getSchemaDefinitionEnumValueDeprecationDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
-    {
-        $translationAPI = TranslationAPIFacade::getInstance();
-        switch ($fieldName) {
-            case 'status':
-                return [
-                    'trashed' => sprintf(
-                        $translationAPI->__('Using \'%s\' instead', 'customposts'),
-                        Status::TRASH
-                    ),
-                ];
-        }
-        return null;
-    }
+    /**
+     * @todo Extract to documentation before deleting this code
+     */
+    // protected function getSchemaDefinitionEnumValueDeprecationDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    // {
+    //     $translationAPI = TranslationAPIFacade::getInstance();
+    //     switch ($fieldName) {
+    //         case 'status':
+    //             return [
+    //                 'trashed' => sprintf(
+    //                     $translationAPI->__('Using \'%s\' instead', 'customposts'),
+    //                     Status::TRASH
+    //                 ),
+    //             ];
+    //     }
+    //     return null;
+    // }
 
     protected function getSchemaDefinitionEnumValueDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
     {
@@ -262,7 +271,10 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
                     Status::PENDING => $translationAPI->__('Pending content', 'customposts'),
                     Status::DRAFT => $translationAPI->__('Draft content', 'customposts'),
                     Status::TRASH => $translationAPI->__('Trashed content', 'customposts'),
-                    'trashed' => $translationAPI->__('Trashed content', 'customposts'),
+                    /**
+                     * @todo Extract to documentation before deleting this code
+                     */
+                    // 'trashed' => $translationAPI->__('Trashed content', 'customposts'),
                 ];
         }
         return null;
