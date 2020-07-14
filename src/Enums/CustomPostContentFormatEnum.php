@@ -10,8 +10,8 @@ class CustomPostContentFormatEnum extends AbstractEnum
 {
     public const NAME = 'CustomPostContentFormat';
 
-    public const HTML = 'html';
-    public const PLAIN_TEXT = 'plain_text';
+    public const HTML = 'HTML';
+    public const PLAIN_TEXT = 'PLAIN_TEXT';
 
     protected function getEnumName(): string
     {
