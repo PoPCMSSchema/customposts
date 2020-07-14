@@ -13,6 +13,7 @@ class ComponentConfiguration
 
     private static $getCustomPostListDefaultLimit;
     private static $getCustomPostListMaxLimit;
+    private static $useSingleTypeInsteadOfCustomPostUnionType;
 
     public static function getCustomPostListDefaultLimit(): ?int
     {
@@ -39,6 +40,24 @@ class ComponentConfiguration
         $selfProperty = &self::$getCustomPostListMaxLimit;
         $defaultValue = -1; // Unlimited
         $callback = [EnvironmentValueHelpers::class, 'toInt'];
+
+        // Initialize property from the environment/hook
+        self::maybeInitializeConfigurationValue(
+            $envVariable,
+            $selfProperty,
+            $defaultValue,
+            $callback
+        );
+        return $selfProperty;
+    }
+
+    public static function useSingleTypeInsteadOfCustomPostUnionType(): bool
+    {
+        // Define properties
+        $envVariable = Environment::USE_SINGLE_TYPE_INSTEAD_OF_CUSTOMPOST_UNION_TYPE;
+        $selfProperty = &self::$useSingleTypeInsteadOfCustomPostUnionType;
+        $defaultValue = false;
+        $callback = [EnvironmentValueHelpers::class, 'toBool'];
 
         // Initialize property from the environment/hook
         self::maybeInitializeConfigurationValue(
