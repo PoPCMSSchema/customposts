@@ -62,7 +62,7 @@ abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDat
 
     protected function getOrderbyDefault()
     {
-        return NameResolverFacade::getInstance()->getName('popcms:dbcolumn:orderby:posts:date');
+        return NameResolverFacade::getInstance()->getName('popcms:dbcolumn:orderby:customposts:date');
     }
 
     protected function getOrderDefault()
