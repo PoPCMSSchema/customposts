@@ -13,7 +13,7 @@ use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 use PoP\CustomPosts\FieldInterfaces\CustomPostFieldInterfaceResolver;
-use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
+use PoP\QueriedObject\FieldInterfaces\QueryableFieldInterfaceResolver;
 
 abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolver
 {
@@ -25,7 +25,7 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
     public static function getImplementedInterfaceClasses(): array
     {
         return [
-            QueryableObjectFieldInterfaceResolver::class,
+            QueryableFieldInterfaceResolver::class,
             CustomPostFieldInterfaceResolver::class,
         ];
     }

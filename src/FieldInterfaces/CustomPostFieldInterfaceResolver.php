@@ -13,9 +13,9 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
-use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
+use PoP\QueriedObject\FieldInterfaces\QueryableFieldInterfaceResolver;
 
-class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceResolver
+class CustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
 {
     use EnumTypeSchemaDefinitionResolverTrait;
 
@@ -29,7 +29,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
     public static function getImplementedInterfaceClasses(): array
     {
         return [
-            QueryableObjectFieldInterfaceResolver::class,
+            QueryableFieldInterfaceResolver::class,
         ];
     }
 
