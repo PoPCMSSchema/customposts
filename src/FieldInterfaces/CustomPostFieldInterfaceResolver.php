@@ -12,12 +12,12 @@ use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
+use PoP\ComponentModel\FieldInterfaceResolvers\EnumTypeFieldInterfaceSchemaDefinitionResolverTrait;
 use PoP\QueriedObject\FieldInterfaces\QueryableFieldInterfaceResolver;
 
 class CustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
 {
-    use EnumTypeSchemaDefinitionResolverTrait;
+    use EnumTypeFieldInterfaceSchemaDefinitionResolverTrait;
 
     public const NAME = 'IsCustomPost';
 
