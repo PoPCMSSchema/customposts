@@ -11,7 +11,6 @@ use PoP\CustomPosts\Enums\CustomPostStatusEnum;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
-use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\EnumTypeSchemaDefinitionResolverTrait;
 use PoP\QueriedObject\FieldInterfaces\QueryableObjectFieldInterfaceResolver;
@@ -57,7 +56,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
         );
     }
 
-    public function getSchemaFieldType(TypeResolverInterface $typeResolver, string $fieldName): ?string
+    public function getSchemaFieldType(string $fieldName): ?string
     {
         $types = [
             'content' => SchemaDefinition::TYPE_STRING,
@@ -69,10 +68,10 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
             'excerpt' => SchemaDefinition::TYPE_STRING,
             'customPostType' => SchemaDefinition::TYPE_STRING,
         ];
-        return $types[$fieldName] ?? parent::getSchemaFieldType($typeResolver, $fieldName);
+        return $types[$fieldName] ?? parent::getSchemaFieldType($fieldName);
     }
 
-    public function isSchemaFieldResponseNonNullable(TypeResolverInterface $typeResolver, string $fieldName): bool
+    public function isSchemaFieldResponseNonNullable(string $fieldName): bool
     {
         /**
          * Please notice that the URL, slug, title and excerpt are nullable,
@@ -87,10 +86,10 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
             case 'customPostType':
                 return true;
         }
-        return parent::isSchemaFieldResponseNonNullable($typeResolver, $fieldName);
+        return parent::isSchemaFieldResponseNonNullable($fieldName);
     }
 
-    public function getSchemaFieldDescription(TypeResolverInterface $typeResolver, string $fieldName): ?string
+    public function getSchemaFieldDescription(string $fieldName): ?string
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         $descriptions = [
@@ -103,11 +102,11 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
             'excerpt' => $translationAPI->__('Custom post excerpt', 'customposts'),
             'customPostType' => $translationAPI->__('Custom post type', 'customposts'),
         ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($typeResolver, $fieldName);
+        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($fieldName);
     }
-    public function getSchemaFieldArgs(TypeResolverInterface $typeResolver, string $fieldName): array
+    public function getSchemaFieldArgs(string $fieldName): array
     {
-        $schemaFieldArgs = parent::getSchemaFieldArgs($typeResolver, $fieldName);
+        $schemaFieldArgs = parent::getSchemaFieldArgs($fieldName);
         $translationAPI = TranslationAPIFacade::getInstance();
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
         $instanceManager = InstanceManagerFacade::getInstance();
@@ -213,7 +212,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
         return CustomPostContentFormatEnum::HTML;
     }
 
-    protected function getSchemaDefinitionEnumName(TypeResolverInterface $typeResolver, string $fieldName): ?string
+    protected function getSchemaDefinitionEnumName(string $fieldName): ?string
     {
         $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
@@ -224,7 +223,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
         return null;
     }
 
-    protected function getSchemaDefinitionEnumValues(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    protected function getSchemaDefinitionEnumValues(string $fieldName): ?array
     {
         $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
@@ -246,7 +245,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
     /**
      * @todo Extract to documentation before deleting this code
      */
-    // protected function getSchemaDefinitionEnumValueDeprecationDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    // protected function getSchemaDefinitionEnumValueDeprecationDescriptions(string $fieldName): ?array
     // {
     //     $translationAPI = TranslationAPIFacade::getInstance();
     //     switch ($fieldName) {
@@ -261,7 +260,7 @@ class CustomPostFieldInterfaceResolver extends QueryableObjectFieldInterfaceReso
     //     return null;
     // }
 
-    protected function getSchemaDefinitionEnumValueDescriptions(TypeResolverInterface $typeResolver, string $fieldName): ?array
+    protected function getSchemaDefinitionEnumValueDescriptions(string $fieldName): ?array
     {
         $translationAPI = TranslationAPIFacade::getInstance();
         switch ($fieldName) {
