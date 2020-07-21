@@ -120,7 +120,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
             case 'customPosts':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
-                    'return-type' => POP_RETURNTYPE_IDS,
+                    'return-type' => \POP_RETURNTYPE_IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
                 return $customPostTypeAPI->getCustomPosts($query, $options);

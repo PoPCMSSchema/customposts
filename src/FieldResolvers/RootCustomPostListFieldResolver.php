@@ -86,7 +86,7 @@ class RootCustomPostListFieldResolver extends AbstractCustomPostListFieldResolve
                     ],
                 ];
                 $options = [
-                    'return-type' => POP_RETURNTYPE_IDS,
+                    'return-type' => \POP_RETURNTYPE_IDS,
                 ];
                 if ($posts = $customPostTypeAPI->getCustomPosts($query, $options)) {
                     return $posts[0];
