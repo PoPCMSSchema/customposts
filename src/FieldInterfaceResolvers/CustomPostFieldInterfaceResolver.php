@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\FieldInterfaces;
+namespace PoP\CustomPosts\FieldInterfaceResolvers;
 
 use PoP\CustomPosts\Types\Status;
 use PoP\ComponentModel\Schema\SchemaHelpers;
@@ -13,7 +13,7 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldInterfaceResolvers\EnumTypeFieldInterfaceSchemaDefinitionResolverTrait;
-use PoP\QueriedObject\FieldInterfaces\QueryableFieldInterfaceResolver;
+use PoP\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
 
 class CustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
 {

@@ -12,8 +12,8 @@ use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\CustomPosts\FieldInterfaces\CustomPostFieldInterfaceResolver;
-use PoP\QueriedObject\FieldInterfaces\QueryableFieldInterfaceResolver;
+use PoP\CustomPosts\FieldInterfaceResolvers\CustomPostFieldInterfaceResolver;
+use PoP\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
 
 abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolver
 {
