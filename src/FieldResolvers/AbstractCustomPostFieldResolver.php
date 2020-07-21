@@ -12,7 +12,7 @@ use PoP\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
-use PoP\CustomPosts\FieldInterfaceResolvers\CustomPostFieldInterfaceResolver;
+use PoP\CustomPosts\FieldInterfaceResolvers\IsCustomPostFieldInterfaceResolver;
 use PoP\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
 
 abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolver
@@ -26,7 +26,7 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
     {
         return [
             QueryableFieldInterfaceResolver::class,
-            CustomPostFieldInterfaceResolver::class,
+            IsCustomPostFieldInterfaceResolver::class,
         ];
     }
 
@@ -47,7 +47,7 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
                 $customPostContentFormatEnum = $instanceManager->getInstance(CustomPostContentFormatEnum::class);
                 $format = $fieldArgs['format'];
                 if (!in_array($format, $customPostContentFormatEnum->getValues())) {
-                    $format = CustomPostFieldInterfaceResolver::getDefaultContentFormatValue();
+                    $format = IsCustomPostFieldInterfaceResolver::getDefaultContentFormatValue();
                 }
                 $value = '';
                 if ($format == CustomPostContentFormatEnum::HTML) {

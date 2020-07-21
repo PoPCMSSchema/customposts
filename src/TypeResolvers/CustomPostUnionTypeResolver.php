@@ -6,7 +6,7 @@ namespace PoP\CustomPosts\TypeResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
-use PoP\CustomPosts\FieldInterfaceResolvers\CustomPostFieldInterfaceResolver;
+use PoP\CustomPosts\FieldInterfaceResolvers\IsCustomPostFieldInterfaceResolver;
 use PoP\CustomPosts\TypeDataLoaders\CustomPostUnionTypeDataLoader;
 
 class CustomPostUnionTypeResolver extends AbstractUnionTypeResolver
@@ -31,6 +31,6 @@ class CustomPostUnionTypeResolver extends AbstractUnionTypeResolver
 
     public function getSchemaTypeInterfaceClass(): ?string
     {
-        return CustomPostFieldInterfaceResolver::class;
+        return IsCustomPostFieldInterfaceResolver::class;
     }
 }

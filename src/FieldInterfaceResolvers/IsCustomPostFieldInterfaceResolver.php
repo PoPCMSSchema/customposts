@@ -15,7 +15,7 @@ use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldInterfaceResolvers\EnumTypeFieldInterfaceSchemaDefinitionResolverTrait;
 use PoP\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
 
-class CustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
+class IsCustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
 {
     use EnumTypeFieldInterfaceSchemaDefinitionResolverTrait;
 
