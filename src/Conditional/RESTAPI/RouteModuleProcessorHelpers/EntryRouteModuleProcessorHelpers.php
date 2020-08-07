@@ -18,7 +18,9 @@ class EntryRouteModuleProcessorHelpers
         if (is_null(self::$restFields)) {
             self::$restFields = self::getRESTFieldsQuery();
             if (is_string(self::$restFields)) {
-                self::$restFields = FieldQueryConvertorFacade::getInstance()->convertAPIQuery(self::$restFields);
+                $fieldQueryConvertor = FieldQueryConvertorFacade::getInstance();
+                $fieldQuerySet = $fieldQueryConvertor->convertAPIQuery(self::$restFields);
+                self::$restFields = $fieldQuerySet->getRequestedFieldQuery();
             }
         }
         return self::$restFields;
