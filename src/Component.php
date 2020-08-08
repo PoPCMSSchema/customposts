@@ -26,7 +26,7 @@ class Component extends AbstractComponent
     public static function getDependedMigrationPlugins(): array
     {
         return [
-            'migrate-customposts',
+            'pop-schema/migrate-customposts',
         ];
     }
 
