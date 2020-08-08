@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\Enums;
+namespace PoPSchema\CustomPosts\Enums;
 
 use PoP\ComponentModel\Enums\AbstractEnum;
 

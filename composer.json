@@ -1,5 +1,5 @@
 {
-    "name": "getpop/customposts",
+    "name": "pop-schema/customposts",
     "type": "library",
     "description": "Interfaces and helpers for custom posts (eg: posts, articles, etc)",
     "keywords": [
@@ -19,8 +19,8 @@
     "prefer-stable": true,
     "require": {
         "php": "~7.2",
-        "getpop/queriedobject": "dev-master",
-        "getpop/migrate-customposts": "dev-master"
+        "pop-schema/queriedobject": "dev-master",
+        "pop-schema/migrate-customposts": "dev-master"
     },
     "require-dev": {
         "phpstan/phpstan": "^0.12",
@@ -29,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PoP\\CustomPosts\\": "src"
+            "PoPSchema\\CustomPosts\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PoP\\CustomPosts\\": "tests"
+            "PoPSchema\\CustomPosts\\": "tests"
         }
     },
     "scripts": {

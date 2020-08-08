@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\TypeResolvers;
+namespace PoPSchema\CustomPosts\TypeResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
-use PoP\CustomPosts\FieldInterfaceResolvers\IsCustomPostFieldInterfaceResolver;
-use PoP\CustomPosts\TypeDataLoaders\CustomPostUnionTypeDataLoader;
+use PoPSchema\CustomPosts\FieldInterfaceResolvers\IsCustomPostFieldInterfaceResolver;
+use PoPSchema\CustomPosts\TypeDataLoaders\CustomPostUnionTypeDataLoader;
 
 class CustomPostUnionTypeResolver extends AbstractUnionTypeResolver
 {

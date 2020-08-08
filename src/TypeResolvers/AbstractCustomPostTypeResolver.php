@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\TypeResolvers;
+namespace PoPSchema\CustomPosts\TypeResolvers;
 
 use PoP\Translation\Facades\TranslationAPIFacade;
-use PoP\CustomPosts\Facades\CustomPostTypeAPIFacade;
+use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\ComponentModel\TypeResolvers\AbstractTypeResolver;
 
 abstract class AbstractCustomPostTypeResolver extends AbstractTypeResolver

@@ -17,7 +17,7 @@ Interfaces and helpers for custom posts (eg: posts, articles, etc)
 Via Composer
 
 ``` bash
-composer require getpop/customposts
+composer require pop-schema/customposts
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ Initialize the component:
 
 ``` php
 \PoP\Root\ComponentLoader::initializeComponents([
-    \PoP\CustomPosts\Component::class,
+    \PoPSchema\CustomPosts\Component::class,
 ]);
 ```
 
@@ -75,17 +75,17 @@ If you discover any security related issues, please email leo@getpop.org instead
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/getpop/customposts.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/pop-schema/customposts.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/getpop/customposts/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/getpop/customposts.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/getpop/customposts.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/getpop/customposts.svg?style=flat-square
+[ico-travis]: https://img.shields.io/travis/pop-schema/customposts/master.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/pop-schema/customposts.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/pop-schema/customposts.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/pop-schema/customposts.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/getpop/customposts
-[link-travis]: https://travis-ci.org/getpop/customposts
-[link-scrutinizer]: https://scrutinizer-ci.com/g/getpop/customposts/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/getpop/customposts
-[link-downloads]: https://packagist.org/packages/getpop/customposts
+[link-packagist]: https://packagist.org/packages/pop-schema/customposts
+[link-travis]: https://travis-ci.org/pop-schema/customposts
+[link-scrutinizer]: https://scrutinizer-ci.com/g/pop-schema/customposts/code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/pop-schema/customposts
+[link-downloads]: https://packagist.org/packages/pop-schema/customposts
 [link-author]: https://github.com/leoloso
 [link-contributors]: ../../contributors

@@ -1,12 +1,12 @@
 services:
-    PoP\CustomPosts\FieldResolvers\:
+    PoPSchema\CustomPosts\FieldResolvers\:
         resource: '../src/FieldResolvers/*'
         public: true
 
-    PoP\CustomPosts\TypeResolvers\:
+    PoPSchema\CustomPosts\TypeResolvers\:
         resource: '../src/TypeResolvers/*'
         public: true
 
-    PoP\CustomPosts\FieldInterfaceResolvers\:
+    PoPSchema\CustomPosts\FieldInterfaceResolvers\:
         resource: '../src/FieldInterfaceResolvers/*'
         public: true

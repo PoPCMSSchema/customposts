@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\Routing;
+namespace PoPSchema\CustomPosts\Routing;
 
 class RouteNatures
 {

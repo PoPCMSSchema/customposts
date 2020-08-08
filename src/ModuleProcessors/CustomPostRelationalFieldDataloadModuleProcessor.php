@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\ModuleProcessors;
+namespace PoPSchema\CustomPosts\ModuleProcessors;
 
-use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
-use PoP\QueriedObject\ModuleProcessors\QueriedDBObjectModuleProcessorTrait;
+use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use PoPSchema\QueriedObject\ModuleProcessors\QueriedDBObjectModuleProcessorTrait;
 use PoP\API\ModuleProcessors\AbstractRelationalFieldDataloadModuleProcessor;
 use PoP\ComponentModel\QueryInputOutputHandlers\ListQueryInputOutputHandler;
 

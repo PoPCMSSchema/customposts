@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\FieldResolvers;
+namespace PoPSchema\CustomPosts\FieldResolvers;
 
-use PoP\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
-use PoP\CustomPosts\FieldResolvers\AbstractCustomPostFieldResolver;
+use PoPSchema\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
+use PoPSchema\CustomPosts\FieldResolvers\AbstractCustomPostFieldResolver;
 
 class CustomPostFieldResolver extends AbstractCustomPostFieldResolver
 {

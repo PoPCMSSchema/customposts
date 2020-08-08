@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\TypeHelpers;
+namespace PoPSchema\CustomPosts\TypeHelpers;
 
-use PoP\CustomPosts\ComponentConfiguration;
-use PoP\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use PoPSchema\CustomPosts\ComponentConfiguration;
+use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
-use PoP\CustomPosts\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
+use PoPSchema\CustomPosts\TypeResolverPickers\CustomPostTypeResolverPickerInterface;
 
 /**
  * In the context of WordPress, "Custom Posts" are all posts (eg: posts, pages, attachments, events, etc)

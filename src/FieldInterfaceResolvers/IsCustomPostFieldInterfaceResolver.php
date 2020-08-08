@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\FieldInterfaceResolvers;
+namespace PoPSchema\CustomPosts\FieldInterfaceResolvers;
 
-use PoP\CustomPosts\Types\Status;
+use PoPSchema\CustomPosts\Types\Status;
 use PoP\ComponentModel\Schema\SchemaHelpers;
 use PoP\ComponentModel\Schema\SchemaDefinition;
-use PoP\CustomPosts\Enums\CustomPostStatusEnum;
+use PoPSchema\CustomPosts\Enums\CustomPostStatusEnum;
 use PoP\Translation\Facades\TranslationAPIFacade;
 use PoP\LooseContracts\Facades\NameResolverFacade;
-use PoP\CustomPosts\Enums\CustomPostContentFormatEnum;
+use PoPSchema\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldInterfaceResolvers\EnumTypeFieldInterfaceSchemaDefinitionResolverTrait;
-use PoP\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
+use PoPSchema\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
 
 class IsCustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
 {

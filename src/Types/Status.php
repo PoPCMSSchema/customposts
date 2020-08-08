@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoP\CustomPosts\Types;
+namespace PoPSchema\CustomPosts\Types;
 
 class Status
 {
