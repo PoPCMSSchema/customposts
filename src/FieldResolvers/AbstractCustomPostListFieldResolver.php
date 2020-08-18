@@ -15,6 +15,7 @@ use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoP\ComponentModel\FieldResolvers\AbstractQueryableFieldResolver;
 use PoPSchema\CustomPosts\ModuleProcessors\CustomPostRelationalFieldDataloadModuleProcessor;
 use PoPSchema\CustomPosts\Types\Status;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -120,7 +121,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
             case 'customPosts':
                 $query = $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs);
                 $options = [
-                    'return-type' => \POP_RETURNTYPE_IDS,
+                    'return-type' => ReturnTypes::IDS,
                 ];
                 $this->addFilterDataloadQueryArgs($options, $typeResolver, $fieldName, $fieldArgs);
                 return $customPostTypeAPI->getCustomPosts($query, $options);

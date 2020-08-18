@@ -12,6 +12,7 @@ use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
 use PoPSchema\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
 use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 /**
  * Add the Custom Post fields to the Root
@@ -86,7 +87,7 @@ class RootCustomPostListFieldResolver extends AbstractCustomPostListFieldResolve
                     ],
                 ];
                 $options = [
-                    'return-type' => \POP_RETURNTYPE_IDS,
+                    'return-type' => ReturnTypes::IDS,
                 ];
                 if ($posts = $customPostTypeAPI->getCustomPosts($query, $options)) {
                     return $posts[0];

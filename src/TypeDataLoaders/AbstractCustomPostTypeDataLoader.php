@@ -10,6 +10,7 @@ use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
 use PoPSchema\CustomPosts\ModuleProcessors\CustomPostRelationalFieldDataloadModuleProcessor;
+use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 
 abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDataLoader
 {
@@ -73,7 +74,7 @@ abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDat
     public function executeQueryIds($query): array
     {
         $options = [
-            'return-type' => \POP_RETURNTYPE_IDS,
+            'return-type' => ReturnTypes::IDS,
         ];
         return (array)$this->executeQuery($query, $options);
     }
