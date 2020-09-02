@@ -145,6 +145,9 @@ class IsCustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
                 );
 
             case 'isStatus':
+                /**
+                 * @var CustomPostStatusEnum
+                 */
                 $customPostStatusEnum = $instanceManager->getInstance(CustomPostStatusEnum::class);
                 return array_merge(
                     $schemaFieldArgs,
@@ -186,6 +189,9 @@ class IsCustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
                 );
 
             case 'content':
+                /**
+                 * @var CustomPostContentFormatEnum
+                 */
                 $customPostContentFormatEnum = $instanceManager->getInstance(CustomPostContentFormatEnum::class);
                 return array_merge(
                     $schemaFieldArgs,
@@ -217,6 +223,9 @@ class IsCustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
         $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'status':
+                /**
+                 * @var CustomPostStatusEnum
+                 */
                 $customPostStatusEnum = $instanceManager->getInstance(CustomPostStatusEnum::class);
                 return $customPostStatusEnum->getName();
         }
@@ -228,6 +237,9 @@ class IsCustomPostFieldInterfaceResolver extends QueryableFieldInterfaceResolver
         $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'status':
+                /**
+                 * @var CustomPostStatusEnum
+                 */
                 $customPostStatusEnum = $instanceManager->getInstance(CustomPostStatusEnum::class);
                 return array_merge(
                     $customPostStatusEnum->getValues(),

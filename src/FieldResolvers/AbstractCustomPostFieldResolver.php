@@ -58,6 +58,9 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
         $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'content':
+                /**
+                 * @var CustomPostContentFormatEnum
+                 */
                 $customPostContentFormatEnum = $instanceManager->getInstance(CustomPostContentFormatEnum::class);
                 $format = $fieldArgs['format'];
                 if (!in_array($format, $customPostContentFormatEnum->getValues())) {
