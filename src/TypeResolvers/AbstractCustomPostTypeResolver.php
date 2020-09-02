@@ -16,7 +16,7 @@ abstract class AbstractCustomPostTypeResolver extends AbstractTypeResolver
         return $translationAPI->__('Representation of a custom post', 'customposts');
     }
 
-    public function getID($resultItem)
+    public function getID(object $resultItem)
     {
         $customPostTypeAPI = CustomPostTypeAPIFacade::getInstance();
         return $customPostTypeAPI->getID($resultItem);
