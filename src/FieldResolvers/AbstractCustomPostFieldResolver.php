@@ -5,12 +5,10 @@ declare(strict_types=1);
 namespace PoPSchema\CustomPosts\FieldResolvers;
 
 use PoP\Hooks\Facades\HooksAPIFacade;
-use PoP\LooseContracts\Facades\NameResolverFacade;
 use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoPSchema\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoPSchema\CustomPosts\TypeAPIs\CustomPostTypeAPIInterface;
 use PoP\ComponentModel\TypeResolvers\TypeResolverInterface;
-use PoP\ComponentModel\Facades\Instances\InstanceManagerFacade;
 use PoP\ComponentModel\FieldResolvers\AbstractDBDataFieldResolver;
 use PoPSchema\CustomPosts\FieldInterfaceResolvers\IsCustomPostFieldInterfaceResolver;
 use PoPSchema\QueriedObject\FieldInterfaceResolvers\QueryableFieldInterfaceResolver;
@@ -55,17 +53,9 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
         $cmsengineapi = \PoP\Engine\FunctionAPIFactory::getInstance();
         $customPostTypeAPI = $this->getCustomPostTypeAPI();
         $customPost = $resultItem;
-        $instanceManager = InstanceManagerFacade::getInstance();
         switch ($fieldName) {
             case 'content':
-                /**
-                 * @var CustomPostContentFormatEnum
-                 */
-                $customPostContentFormatEnum = $instanceManager->getInstance(CustomPostContentFormatEnum::class);
                 $format = $fieldArgs['format'];
-                if (!in_array($format, $customPostContentFormatEnum->getValues())) {
-                    $format = IsCustomPostFieldInterfaceResolver::getDefaultContentFormatValue();
-                }
                 $value = '';
                 if ($format == CustomPostContentFormatEnum::HTML) {
                     $value = $customPostTypeAPI->getContent($customPost);
@@ -91,8 +81,7 @@ abstract class AbstractCustomPostFieldResolver extends AbstractDBDataFieldResolv
                 return $fieldArgs['status'] == $customPostTypeAPI->getStatus($customPost);
 
             case 'date':
-                $format = $fieldArgs['format'] ?? $cmsengineapi->getOption(NameResolverFacade::getInstance()->getName('popcms:option:dateFormat'));
-                return $cmsengineapi->getDate($format, $customPostTypeAPI->getPublishedDate($customPost));
+                return $cmsengineapi->getDate($fieldArgs['format'], $customPostTypeAPI->getPublishedDate($customPost));
 
             case 'datetime':
                 // If it is the current year, don't add the year. Otherwise, do
