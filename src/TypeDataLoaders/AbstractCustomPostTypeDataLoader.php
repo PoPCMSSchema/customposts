@@ -29,7 +29,7 @@ abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDat
             'include' => $ids,
             // If not adding the post types, WordPress only uses "post", so querying by CPT would fail loading data
             // This should be considered for the CMS-agnostic case if it makes sense
-            'custom-post-types' => $customPostTypeAPI->getCustomPostTypes([
+            'custompost-types' => $customPostTypeAPI->getCustomPostTypes([
                 'publicly-queryable' => true,
             ])
         );
@@ -46,7 +46,7 @@ abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDat
     {
         $query = array();
         $query['include'] = $ids;
-        $query['custom-post-status'] = [
+        $query['status'] = [
             Status::PUBLISHED,
             Status::DRAFT,
             Status::PENDING,

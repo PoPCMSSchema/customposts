@@ -96,7 +96,7 @@ class RootCustomPostListFieldResolver extends AbstractCustomPostListFieldResolve
                 $query = [
                     'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
                     'include' => [$fieldArgs['id']],
-                    'custom-post-status' => [
+                    'status' => [
                         Status::PUBLISHED,
                     ],
                 ];

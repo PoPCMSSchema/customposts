@@ -107,14 +107,14 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
                 return [
                     'limit' => ComponentConfiguration::getCustomPostListDefaultLimit(),
                     'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
-                    'custom-post-status' => [
+                    'status' => [
                         Status::PUBLISHED,
                     ],
                 ];
             case 'customPostCount':
                 return [
                     'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
-                    'custom-post-status' => [
+                    'status' => [
                         Status::PUBLISHED,
                     ],
                 ];
