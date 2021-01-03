@@ -20,6 +20,10 @@ Via Composer
 composer require pop-schema/customposts
 ```
 
+## Development
+
+The source code is hosted on the [PoP monorepo](https://github.com/leoloso/PoP), under [`Schema/packages/customposts`](https://github.com/leoloso/PoP/tree/master/layers/Schema/packages/customposts).
+
 ## Usage
 
 Initialize the component:
@@ -46,7 +50,7 @@ Same as the [Supported PHP features for `getpop/root`](https://github.com/getpop
 Via [Rector](https://github.com/rectorphp/rector) (dry-run mode):
 
 ```bash
-composer downgrade-code
+composer preview-code-downgrade
 ```
 
 ## Standards
@@ -107,4 +111,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 [link-code-quality]: https://scrutinizer-ci.com/g/pop-schema/customposts
 [link-downloads]: https://packagist.org/packages/pop-schema/customposts
 [link-author]: https://github.com/leoloso
-[link-contributors]: ../../contributors
+[link-contributors]: ../../../../../../contributors
