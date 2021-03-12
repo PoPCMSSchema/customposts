@@ -8,3 +8,12 @@ services:
 
     PoPSchema\CustomPosts\LooseContracts\:
         resource: '../src/LooseContracts/*'
+
+    PoPSchema\CustomPosts\ModuleProcessors\:
+        resource: '../src/ModuleProcessors/*'
+
+    PoPSchema\CustomPosts\FilterInputProcessors\:
+        resource: '../src/FilterInputProcessors/*'
+
+    PoPSchema\CustomPosts\Enums\:
+        resource: '../src/Enums/*'
