@@ -12,6 +12,7 @@ use PoPSchema\CustomPosts\ModuleProcessors\CommonCustomPostFilterInputContainerM
 use PoPSchema\CustomPosts\TypeHelpers\CustomPostUnionTypeHelpers;
 use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
+use PoPSchema\SchemaCommons\Constants\QueryOptions;
 
 /**
  * Add the Custom Post fields to the Root
@@ -105,11 +106,9 @@ class RootCustomPostListFieldResolver extends AbstractCustomPostListFieldResolve
             case 'unrestrictedCustomPostBySlug':
                 $query = array_merge(
                     $this->convertFieldArgsToFilteringQueryArgs($typeResolver, $fieldName, $fieldArgs),
-                    [
-                        'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
-                    ]
+                    $this->getQuery($typeResolver, $resultItem, $fieldName, $fieldArgs)
                 );
-                if ($posts = $customPostTypeAPI->getCustomPosts($query, ['return-type' => ReturnTypes::IDS])) {
+                if ($posts = $customPostTypeAPI->getCustomPosts($query, [QueryOptions::RETURN_TYPE => ReturnTypes::IDS])) {
                     return $posts[0];
                 }
                 return null;

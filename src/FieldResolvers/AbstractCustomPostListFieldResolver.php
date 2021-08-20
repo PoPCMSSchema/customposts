@@ -16,6 +16,7 @@ use PoPSchema\CustomPosts\TypeResolvers\CustomPostUnionTypeResolver;
 use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 use PoPSchema\SchemaCommons\ModuleProcessors\FormInputs\CommonFilterInputModuleProcessor;
 use PoP\ComponentModel\FilterInput\FilterInputHelper;
+use PoPSchema\SchemaCommons\Constants\QueryOptions;
 
 abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFieldResolver
 {
@@ -122,15 +123,6 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
         string $fieldName,
         array $fieldArgs = []
     ): array {
-        switch ($fieldName) {
-            case 'customPosts':
-            case 'unrestrictedCustomPosts':
-            case 'customPostCount':
-            case 'unrestrictedCustomPostCount':
-                return [
-                    'types-from-union-resolver-class' => CustomPostUnionTypeResolver::class,
-                ];
-        }
         return [];
     }
 
@@ -157,7 +149,7 @@ abstract class AbstractCustomPostListFieldResolver extends AbstractQueryableFiel
         switch ($fieldName) {
             case 'customPosts':
             case 'unrestrictedCustomPosts':
-                return $customPostTypeAPI->getCustomPosts($query, ['return-type' => ReturnTypes::IDS]);
+                return $customPostTypeAPI->getCustomPosts($query, [QueryOptions::RETURN_TYPE => ReturnTypes::IDS]);
 
             case 'customPostCount':
             case 'unrestrictedCustomPostCount':
