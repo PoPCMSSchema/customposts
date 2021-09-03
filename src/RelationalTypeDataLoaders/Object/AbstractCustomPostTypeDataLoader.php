@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPosts\TypeDataLoaders;
+namespace PoPSchema\CustomPosts\RelationalTypeDataLoaders\Object;
 
-use PoP\ComponentModel\TypeDataLoaders\AbstractTypeQueryableDataLoader;
+use PoP\ComponentModel\RelationalTypeDataLoaders\Object\AbstractObjectTypeQueryableDataLoader;
 use PoPSchema\CustomPosts\Facades\CustomPostTypeAPIFacade;
 use PoPSchema\CustomPostsWP\TypeAPIs\CustomPostTypeAPIUtils;
 use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 use PoPSchema\SchemaCommons\Constants\QueryOptions;
 
-abstract class AbstractCustomPostTypeDataLoader extends AbstractTypeQueryableDataLoader
+abstract class AbstractCustomPostTypeDataLoader extends AbstractObjectTypeQueryableDataLoader
 {
     public function getQueryToRetrieveObjectsForIDs(array $ids): array
     {
