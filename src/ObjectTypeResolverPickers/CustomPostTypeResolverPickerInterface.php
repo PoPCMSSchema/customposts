@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPosts\TypeResolverPickers;
+namespace PoPSchema\CustomPosts\ObjectTypeResolverPickers;
 
 interface CustomPostTypeResolverPickerInterface
 {

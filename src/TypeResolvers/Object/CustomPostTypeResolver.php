@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPosts\TypeResolvers;
+namespace PoPSchema\CustomPosts\TypeResolvers\Object;
 
 use PoPSchema\CustomPosts\TypeDataLoaders\CustomPostTypeDataLoader;
-use PoPSchema\CustomPosts\TypeResolvers\AbstractCustomPostTypeResolver;
+use PoPSchema\CustomPosts\TypeResolvers\Object\AbstractCustomPostTypeResolver;
 
 /**
  * Class to be used only when a generic CustomPost type is good enough.

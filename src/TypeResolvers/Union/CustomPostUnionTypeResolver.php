@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPosts\TypeResolvers;
+namespace PoPSchema\CustomPosts\TypeResolvers\Union;
 
-use PoP\ComponentModel\TypeResolvers\AbstractUnionTypeResolver;
+use PoP\ComponentModel\TypeResolvers\Union\AbstractUnionTypeResolver;
 use PoPSchema\CustomPosts\FieldInterfaceResolvers\IsCustomPostFieldInterfaceResolver;
 use PoPSchema\CustomPosts\TypeDataLoaders\CustomPostUnionTypeDataLoader;
 
