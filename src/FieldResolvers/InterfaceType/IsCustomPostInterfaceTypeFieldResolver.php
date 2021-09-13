@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPosts\InterfaceTypeFieldResolvers;
+namespace PoPSchema\CustomPosts\FieldResolvers\InterfaceType;
 
-use PoP\ComponentModel\InterfaceTypeFieldResolvers\AbstractQueryableSchemaInterfaceTypeFieldResolver;
-use PoP\ComponentModel\InterfaceTypeFieldResolvers\EnumTypeInterfaceTypeFieldSchemaDefinitionResolverTrait;
+use PoP\ComponentModel\FieldResolvers\InterfaceType\AbstractQueryableSchemaInterfaceTypeFieldResolver;
+use PoP\ComponentModel\FieldResolvers\InterfaceType\EnumTypeInterfaceTypeFieldSchemaDefinitionResolverTrait;
 use PoP\ComponentModel\Schema\SchemaDefinition;
 use PoP\ComponentModel\Schema\SchemaHelpers;
 use PoP\ComponentModel\Schema\SchemaTypeModifiers;
@@ -13,7 +13,7 @@ use PoPSchema\CustomPosts\Enums\CustomPostContentFormatEnum;
 use PoPSchema\CustomPosts\Enums\CustomPostStatusEnum;
 use PoPSchema\CustomPosts\TypeResolvers\InterfaceType\IsCustomPostInterfaceTypeResolver;
 use PoPSchema\CustomPosts\Types\Status;
-use PoPSchema\QueriedObject\InterfaceTypeFieldResolvers\QueryableInterfaceTypeFieldResolver;
+use PoPSchema\QueriedObject\FieldResolvers\InterfaceType\QueryableInterfaceTypeFieldResolver;
 use PoPSchema\SchemaCommons\ModuleProcessors\CommonFilterInputContainerModuleProcessor;
 
 class IsCustomPostInterfaceTypeFieldResolver extends AbstractQueryableSchemaInterfaceTypeFieldResolver
