@@ -2,17 +2,18 @@
 
 declare(strict_types=1);
 
-namespace PoPSchema\CustomPosts\Enums;
+namespace PoPSchema\CustomPosts\TypeResolvers\EnumType;
 
 use PoPSchema\CustomPosts\Types\Status;
 use PoP\ComponentModel\Enums\AbstractEnumTypeResolver;
 
-class CustomPostStatusEnum extends AbstractEnumTypeResolver
+class CustomPostStatusEnumTypeResolver extends AbstractEnumTypeResolver
 {
     public function getTypeName(): string
     {
         return 'CustomPostStatus';
     }
+
     /**
      * @return string[]
      */
