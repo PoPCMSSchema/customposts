@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace PoPSchema\CustomPosts\FieldResolvers\ObjectType;
 
-use Symfony\Contracts\Service\Attribute\Required;
 use PoP\ComponentModel\FieldResolvers\ObjectType\AbstractQueryableObjectTypeFieldResolver;
 use PoP\ComponentModel\FilterInput\FilterInputHelper;
 use PoP\ComponentModel\Schema\SchemaTypeModifiers;
@@ -19,6 +18,7 @@ use PoPSchema\SchemaCommons\Constants\QueryOptions;
 use PoPSchema\SchemaCommons\DataLoading\ReturnTypes;
 use PoPSchema\SchemaCommons\ModuleProcessors\FormInputs\CommonFilterInputModuleProcessor;
 use PoPSchema\SchemaCommons\Resolvers\WithLimitFieldArgResolverTrait;
+use Symfony\Contracts\Service\Attribute\Required;
 
 abstract class AbstractCustomPostListObjectTypeFieldResolver extends AbstractQueryableObjectTypeFieldResolver
 {
@@ -56,13 +56,13 @@ abstract class AbstractCustomPostListObjectTypeFieldResolver extends AbstractQue
 
     public function getFieldTypeResolver(ObjectTypeResolverInterface $objectTypeResolver, string $fieldName): ConcreteTypeResolverInterface
     {
-        $types = [
+        return match ($fieldName) {
             'customPosts' => CustomPostUnionTypeHelpers::getCustomPostUnionOrTargetObjectTypeResolver(),
             'customPostsForAdmin' => CustomPostUnionTypeHelpers::getCustomPostUnionOrTargetObjectTypeResolver(),
             'customPostCount' => $this->intScalarTypeResolver,
             'customPostCountForAdmin' => $this->intScalarTypeResolver,
-        ];
-        return $types[$fieldName] ?? parent::getFieldTypeResolver($objectTypeResolver, $fieldName);
+            default => parent::getFieldTypeResolver($objectTypeResolver, $fieldName),
+        };
     }
 
     public function getSchemaFieldTypeModifiers(ObjectTypeResolverInterface $objectTypeResolver, string $fieldName): ?int
@@ -81,13 +81,13 @@ abstract class AbstractCustomPostListObjectTypeFieldResolver extends AbstractQue
 
     public function getSchemaFieldDescription(ObjectTypeResolverInterface $objectTypeResolver, string $fieldName): ?string
     {
-        $descriptions = [
+        return match ($fieldName) {
             'customPosts' => $this->translationAPI->__('Custom posts', 'pop-posts'),
             'customPostCount' => $this->translationAPI->__('Number of custom posts', 'pop-posts'),
             'customPostsForAdmin' => $this->translationAPI->__('[Unrestricted] Custom posts', 'pop-posts'),
             'customPostCountForAdmin' => $this->translationAPI->__('[Unrestricted] Number of custom posts', 'pop-posts'),
-        ];
-        return $descriptions[$fieldName] ?? parent::getSchemaFieldDescription($objectTypeResolver, $fieldName);
+            default => parent::getSchemaFieldDescription($objectTypeResolver, $fieldName),
+        };
     }
 
     public function getFieldFilterInputContainerModule(ObjectTypeResolverInterface $objectTypeResolver, string $fieldName): ?array
