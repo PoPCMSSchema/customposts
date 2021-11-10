@@ -7,10 +7,7 @@ namespace PoPSchema\CustomPosts\TypeResolvers\InputObjectType;
 use PoP\ComponentModel\TypeResolvers\InputObjectType\AbstractInputObjectTypeResolver;
 use PoPSchema\SchemaCommons\TypeResolvers\ScalarType\DateScalarTypeResolver;
 
-/**
- * @todo Keep working on it
- */
-class DateQueryInputObjectTypeResolver extends AbstractInputObjectTypeResolver
+class CustomPostDateQueryInputObjectTypeResolver extends AbstractInputObjectTypeResolver
 {
     private ?DateScalarTypeResolver $dateScalarTypeResolver = null;
 
@@ -25,7 +22,7 @@ class DateQueryInputObjectTypeResolver extends AbstractInputObjectTypeResolver
 
     public function getTypeName(): string
     {
-        return 'DateQuery';
+        return 'CustomPostDateQueryInput';
     }
 
     public function getInputFieldNameTypeResolvers(): array
@@ -34,5 +31,14 @@ class DateQueryInputObjectTypeResolver extends AbstractInputObjectTypeResolver
             'after' => $this->getDateScalarTypeResolver(),
             'before' => $this->getDateScalarTypeResolver(),
         ];
+    }
+
+    public function getInputFieldDescription(string $inputFieldName): ?string
+    {
+        return match ($inputFieldName) {
+            'after' => $this->getTranslationAPI()->__('Retrieve custom posts from after this date', 'schema-commons'),
+            'before' => $this->getTranslationAPI()->__('Retrieve custom posts from before this date', 'schema-commons'),
+            default => parent::getInputFieldDescription($inputFieldName),
+        };
     }
 }
