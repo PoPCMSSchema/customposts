@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\CustomPosts\TypeResolvers\InputObjectType;
 
+use PoP\ComponentModel\TypeResolvers\InputTypeResolverInterface;
 use PoPCMSSchema\CustomPosts\Constants\CustomPostOrderBy;
 use PoPCMSSchema\CustomPosts\TypeResolvers\EnumType\CustomPostOrderByEnumTypeResolver;
 use PoPCMSSchema\SchemaCommons\TypeResolvers\InputObjectType\SortInputObjectTypeResolver;
@@ -18,6 +19,7 @@ class CustomPostSortInputObjectTypeResolver extends SortInputObjectTypeResolver
     }
     final protected function getCustomPostOrderByEnumTypeResolver(): CustomPostOrderByEnumTypeResolver
     {
+        /** @var CustomPostOrderByEnumTypeResolver */
         return $this->customPostSortByEnumTypeResolver ??= $this->instanceManager->getInstance(CustomPostOrderByEnumTypeResolver::class);
     }
 
@@ -26,6 +28,9 @@ class CustomPostSortInputObjectTypeResolver extends SortInputObjectTypeResolver
         return 'CustomPostSortInput';
     }
 
+    /**
+     * @return array<string,InputTypeResolverInterface>
+     */
     public function getInputFieldNameTypeResolvers(): array
     {
         return array_merge(

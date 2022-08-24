@@ -36,6 +36,7 @@ class CustomPostRelationalFieldDataloadComponentProcessor extends AbstractRelati
     }
     final protected function getCustomPostUnionTypeResolver(): CustomPostUnionTypeResolver
     {
+        /** @var CustomPostUnionTypeResolver */
         return $this->customPostUnionTypeResolver ??= $this->instanceManager->getInstance(CustomPostUnionTypeResolver::class);
     }
     final public function setListQueryInputOutputHandler(ListQueryInputOutputHandler $listQueryInputOutputHandler): void
@@ -44,9 +45,13 @@ class CustomPostRelationalFieldDataloadComponentProcessor extends AbstractRelati
     }
     final protected function getListQueryInputOutputHandler(): ListQueryInputOutputHandler
     {
+        /** @var ListQueryInputOutputHandler */
         return $this->listQueryInputOutputHandler ??= $this->instanceManager->getInstance(ListQueryInputOutputHandler::class);
     }
 
+    /**
+     * @return string[]
+     */
     public function getComponentNamesToProcess(): array
     {
         return array(
@@ -62,11 +67,16 @@ class CustomPostRelationalFieldDataloadComponentProcessor extends AbstractRelati
         );
     }
 
-    public function getObjectIDOrIDs(Component $component, array &$props, &$data_properties): string|int|array|null
+    /**
+     * @return string|int|array<string|int>|null
+     * @param array<string,mixed> $props
+     * @param array<string,mixed> $data_properties
+     */
+    public function getObjectIDOrIDs(Component $component, array &$props, array &$data_properties): string|int|array|null
     {
         switch ($component->name) {
             case self::COMPONENT_DATALOAD_RELATIONALFIELDS_SINGLECUSTOMPOST:
-                return $this->getQueriedDBObjectID($component, $props, $data_properties);
+                return $this->getQueriedDBObjectID();
         }
 
         return parent::getObjectIDOrIDs($component, $props, $data_properties);

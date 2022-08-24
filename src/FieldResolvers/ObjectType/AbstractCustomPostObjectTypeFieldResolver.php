@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace PoPCMSSchema\CustomPosts\FieldResolvers\ObjectType;
 
+use PoP\ComponentModel\FieldResolvers\InterfaceType\InterfaceTypeFieldResolverInterface;
 use PoP\ComponentModel\QueryResolution\FieldDataAccessorInterface;
 use PoP\ComponentModel\Feedback\ObjectTypeFieldResolutionFeedbackStore;
 use DateTime;
@@ -27,6 +28,7 @@ abstract class AbstractCustomPostObjectTypeFieldResolver extends AbstractObjectT
     }
     final protected function getCustomPostTypeAPI(): CustomPostTypeAPIInterface
     {
+        /** @var CustomPostTypeAPIInterface */
         return $this->customPostTypeAPI ??= $this->instanceManager->getInstance(CustomPostTypeAPIInterface::class);
     }
     final public function setDateFormatter(DateFormatterInterface $dateFormatter): void
@@ -35,6 +37,7 @@ abstract class AbstractCustomPostObjectTypeFieldResolver extends AbstractObjectT
     }
     final protected function getDateFormatter(): DateFormatterInterface
     {
+        /** @var DateFormatterInterface */
         return $this->dateFormatter ??= $this->instanceManager->getInstance(DateFormatterInterface::class);
     }
     final public function setQueryableInterfaceTypeFieldResolver(QueryableInterfaceTypeFieldResolver $queryableInterfaceTypeFieldResolver): void
@@ -43,6 +46,7 @@ abstract class AbstractCustomPostObjectTypeFieldResolver extends AbstractObjectT
     }
     final protected function getQueryableInterfaceTypeFieldResolver(): QueryableInterfaceTypeFieldResolver
     {
+        /** @var QueryableInterfaceTypeFieldResolver */
         return $this->queryableInterfaceTypeFieldResolver ??= $this->instanceManager->getInstance(QueryableInterfaceTypeFieldResolver::class);
     }
     final public function setIsCustomPostInterfaceTypeFieldResolver(IsCustomPostInterfaceTypeFieldResolver $isCustomPostInterfaceTypeFieldResolver): void
@@ -51,14 +55,21 @@ abstract class AbstractCustomPostObjectTypeFieldResolver extends AbstractObjectT
     }
     final protected function getIsCustomPostInterfaceTypeFieldResolver(): IsCustomPostInterfaceTypeFieldResolver
     {
+        /** @var IsCustomPostInterfaceTypeFieldResolver */
         return $this->isCustomPostInterfaceTypeFieldResolver ??= $this->instanceManager->getInstance(IsCustomPostInterfaceTypeFieldResolver::class);
     }
 
+    /**
+     * @return string[]
+     */
     public function getFieldNamesToResolve(): array
     {
         return [];
     }
 
+    /**
+     * @return array<InterfaceTypeFieldResolverInterface>
+     */
     public function getImplementedInterfaceTypeFieldResolvers(): array
     {
         return [
